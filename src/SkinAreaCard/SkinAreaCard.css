@@ -1,0 +1,247 @@
+.skin-area-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.skin-area-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--area-color);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.skin-area-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--area-color);
+}
+
+/* Card Header */
+.card-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.area-info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.area-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.area-details {
+  flex: 1;
+}
+
+.area-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-tight);
+}
+
+.area-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-bottom: 0;
+  line-height: var(--line-height-normal);
+}
+
+/* Card Body */
+.card-body {
+  margin-bottom: var(--spacing-lg);
+}
+
+.score-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-light-gray);
+  border-radius: var(--radius-lg);
+}
+
+.current-score, .goal-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.score-label, .goal-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.score-value, .goal-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.goal-value {
+  color: var(--text-secondary);
+}
+
+/* Score Category */
+.score-category {
+  margin-bottom: var(--spacing-md);
+}
+
+.category-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Progress Section */
+.progress-section {
+  margin-bottom: var(--spacing-md);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.progress-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.progress-percentage {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Improvement Indicator */
+.improvement-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background-color: rgba(46, 204, 113, 0.1);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.improvement-icon {
+  font-size: 1.1rem;
+}
+
+.improvement-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Card Footer */
+.card-footer {
+  border-top: 1px solid var(--color-gray);
+  padding-top: var(--spacing-md);
+}
+
+.view-details-btn {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: transparent;
+  border: 1px solid var(--color-gray);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.view-details-btn:hover {
+  background-color: var(--area-color);
+  border-color: var(--area-color);
+  color: var(--color-white);
+}
+
+.btn-arrow {
+  transition: transform var(--transition-fast);
+}
+
+.view-details-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skin-area-card {
+    padding: var(--spacing-md);
+  }
+  
+  .area-info {
+    gap: var(--spacing-sm);
+  }
+  
+  .area-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+  
+  .area-name {
+    font-size: var(--font-size-base);
+  }
+  
+  .score-section {
+    padding: var(--spacing-sm);
+  }
+  
+  .score-value, .goal-value {
+    font-size: var(--font-size-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .area-description {
+    display: none;
+  }
+  
+  .score-section {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .current-score, .goal-score {
+    width: 100%;
+  }
+}
