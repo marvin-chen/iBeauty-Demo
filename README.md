@@ -8,29 +8,29 @@
 A sophisticated **React + Node.js** application demonstrating gamified skin health tracking with **AI-driven personalized goals**. This demo showcases modern web development practices, interactive UI components, and a complete full-stack architecture for beauty and skincare applications.
 
 
-## ✨ Features
+## Features
 
-### 🎯 Core Functionality
+### Core Functionality
 - **8 Skin Concern Area Tracking** - Comprehensive skin health monitoring
 - **AI-Powered Goal Setting** - Intelligent recommendations with smooth animations
 - **Real-time Progress Tracking** - Visual progress indicators and score improvements
 - **Interactive Dashboard** - Modern, responsive interface with health metrics
 - **Product Recommendations** - Personalized skincare suggestions
 
-### 🎮 Gamification Elements
+### Gamification Elements
 - **Health Score System** - Overall skin health scoring (0-100)
 - **Progress Visualization** - Beautiful progress bars and improvement tracking
 - **Achievement Tracking** - Monitor improvements across different skin areas
 - **Rewards System** - Points and badges for consistent usage
 
-### 🔧 Technical Features
+### Technical Features
 - **Responsive Design** - Mobile-first approach with modern CSS
 - **RESTful API** - Complete backend with Express.js
 - **Component Architecture** - Modular React components
 - **Error Handling** - Comprehensive error boundaries and user feedback
 - **Development Tools** - Hot reload, ESLint, and development server
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
@@ -57,7 +57,7 @@ A sophisticated **React + Node.js** application demonstrating gamified skin heal
    cd ..
    ```
 
-### 🏃‍♂️ Running the Application
+### Running the Application
 
 #### Option 1: Start Both Servers Simultaneously (Recommended)
 ```bash
@@ -103,7 +103,7 @@ ibeauty-demo/
 └── 📄 README.md              # This file
 ```
 
-## 🛠️ Available Scripts
+## Available Scripts
 
 ### Frontend Commands
 | Command | Description |
@@ -119,7 +119,7 @@ ibeauty-demo/
 | `npm start` | Start production server |
 | `npm run dev` | Start with nodemon (auto-restart) |
 
-## 🎨 Key Components
+## Key Components
 
 ### Dashboard Features
 - **Health Score Overview** - Real-time skin health metrics
