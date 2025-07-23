@@ -1,4 +1,4 @@
-# 🌟 iBeauty Demo - AI-Driven Skin Health Tracking
+# iBeauty Demo - AI-Driven Skin Health Tracking
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-16%2B-green.svg)](https://nodejs.org/)
@@ -80,27 +80,27 @@ PORT=3001 npm run dev
 npm start
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ibeauty-demo/
-├── 📁 public/                 # Static assets
-├── 📁 src/                    # React frontend source
-│   ├── 📁 components/         # Reusable components
-│   │   └── 📁 AIBot/         # AI animation components
-│   ├── 📁 pages/             # Page components
-│   │   ├── 📁 Dashboard/     # Main dashboard
-│   │   └── 📁 AreaDetail/    # Skin area details
-│   ├── 📁 services/          # API services
-│   ├── 📁 utils/             # Helper functions
-│   └── 📁 styles/            # Global styles
-├── 📁 backend/               # Node.js backend
-│   ├── 📄 server.js          # Express server
-│   ├── 📄 package.json       # Backend dependencies
-│   └── 📁 data/              # Mock data files
-├── 📄 package.json           # Frontend dependencies
-├── 📄 .env                   # Environment variables
-└── 📄 README.md              # This file
+├── public/                 # Static assets
+├── src/                    # React frontend source
+│   ├── components/         # Reusable components
+│   │   └── AIBot/         # AI animation components
+│   ├── pages/             # Page components
+│   │   ├── Dashboard/     # Main dashboard
+│   │   └── AreaDetail/    # Skin area details
+│   ├── services/          # API services
+│   ├── utils/             # Helper functions
+│   └── styles/            # Global styles
+├── backend/               # Node.js backend
+│   ├── server.js          # Express server
+│   ├── package.json       # Backend dependencies
+│   └── data/              # Mock data files
+├── package.json           # Frontend dependencies
+├── .env                   # Environment variables
+└── README.md              # This file
 ```
 
 ## Available Scripts
