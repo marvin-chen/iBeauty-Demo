@@ -4,6 +4,7 @@ import Header from './components/AIBot/Header/Header';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AreaDetail from './pages/AreaDetail/AreaDetail';
 import About from './pages/About/About';
+import Rewards from './pages/Rewards/Rewards';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/area/:areaId" element={<AreaDetail />} />
+            <Route path="/rewards" element={<Rewards />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
