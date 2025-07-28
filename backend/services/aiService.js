@@ -59,15 +59,23 @@ class AIService {
       const priorityAreas = this.identifyPriorityAreas(skinData.areas);
       
       // Generate recommendations for each skin area
-      for (const [area, score] of Object.entries(skinData.areas)) {
+      for (const [area, areaInfo] of Object.entries(skinData.areas)) {
         const areaData = this.skinConcernDatabase[area];
         if (!areaData) continue;
+
+        const score = areaInfo.currentScore || areaInfo; // Handle both object and number formats
+        
+        // Validate score is a number
+        if (typeof score !== 'number' || isNaN(score)) {
+          console.warn(`Invalid score for area ${area}:`, score);
+          continue;
+        }
 
         recommendations[area] = {
           severity: this.getSeverityLevel(score),
           primaryIngredients: this.selectIngredients(areaData, score),
           routine: this.buildAreaRoutine(areaData, score),
-          tips: areaData.tips,
+          tips: areaData.tips || [],
           timeframe: this.estimateTimeframe(score),
           priority: priorityAreas.includes(area) ? 'high' : 'medium'
         };
@@ -95,6 +103,7 @@ class AIService {
 
   identifyPriorityAreas(areas) {
     const sortedAreas = Object.entries(areas)
+      .map(([area, areaInfo]) => [area, areaInfo.currentScore || areaInfo])
       .sort(([,a], [,b]) => b - a)
       .slice(0, 3)
       .map(([area]) => area);

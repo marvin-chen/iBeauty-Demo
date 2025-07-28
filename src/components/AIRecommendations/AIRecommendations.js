@@ -8,7 +8,8 @@ function AIRecommendations({ skinData, className = '' }) {
   const [recommendations, setRecommendations] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [expandedArea, setExpandedArea] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const loadRecommendations = useCallback(async () => {
     try {
@@ -29,6 +30,16 @@ function AIRecommendations({ skinData, className = '' }) {
       loadRecommendations();
     }
   }, [skinData, loadRecommendations]);
+
+  const handleAreaClick = (area, rec) => {
+    setSelectedArea({ area, rec });
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedArea(null);
+  };
 
   const getSeverityColor = (severity) => {
     switch (severity) {
@@ -161,66 +172,111 @@ function AIRecommendations({ skinData, className = '' }) {
       <div className="area-recommendations">
         <h4>Area-Specific Guidance</h4>
         <div className="areas-grid">
-          {Object.entries(recommendations.recommendations).map(([area, rec]) => (
-            <div key={area} className="area-rec-card">
-              <div 
-                className="area-header"
-                onClick={() => setExpandedArea(expandedArea === area ? null : area)}
-              >
-                <h5>{getAreaDisplayName(area)}</h5>
-                <div className="area-meta">
-                  <span 
-                    className="severity-badge"
-                    style={{ backgroundColor: getSeverityColor(rec.severity) }}
-                  >
-                    {rec.severity}
-                  </span>
-                  <span className="priority-badge">
-                    {rec.priority}
-                  </span>
-                  <span className="expand-icon">
-                    <i className={`fas ${expandedArea === area ? 'fa-chevron-down' : 'fa-chevron-right'}`}></i>
-                  </span>
+          {recommendations && Object.entries(recommendations.recommendations).map(([area, rec]) => {
+            if (!rec || !rec.severity || !rec.priority) {
+              console.warn(`Invalid recommendation data for area: ${area}`, rec);
+              return null;
+            }
+            
+            return (
+              <div key={`area-${area}`} className="area-rec-card">
+                <div 
+                  className="area-header"
+                  onClick={() => handleAreaClick(area, rec)}
+                >
+                  <h5>{getAreaDisplayName(area)}</h5>
+                  <div className="area-meta">
+                    <span 
+                      className="severity-badge"
+                      style={{ backgroundColor: getSeverityColor(rec.severity) }}
+                    >
+                      {rec.severity}
+                    </span>
+                    <span className="priority-badge">
+                      {rec.priority}
+                    </span>
+                    <span className="expand-icon">
+                      <i className="fas fa-external-link-alt"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
-              
-              {expandedArea === area && (
-                <div className="area-details">
-                  <div className="detail-section">
-                    <h6>
-                      <i className="fas fa-flask"></i>
-                      Key Ingredients
-                    </h6>
-                    <div className="ingredients-list">
-                      {rec.primaryIngredients.map((ingredient, index) => (
-                        <span key={index} className="ingredient-tag">
-                          {ingredient.replace(/_/g, ' ')}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="detail-section">
-                    <h6>
-                      <i className="fas fa-lightbulb"></i>
-                      Professional Tips
-                    </h6>
-                    <ul>
-                      {rec.tips.map((tip, index) => (
-                        <li key={index}>{tip}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="timeframe">
-                    <strong>Expected results:</strong> {rec.timeframe}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
+      {/* Modal for detailed view */}
+      {showModal && selectedArea && (
+        <div className="area-details-modal" onClick={closeModal}>
+          <div className="area-details-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              <i className="fas fa-times"></i>
+            </button>
+            
+            <div className="modal-header">
+              <h4>{getAreaDisplayName(selectedArea.area)}</h4>
+              <div className="modal-badges">
+                <span 
+                  className="severity-badge"
+                  style={{ backgroundColor: getSeverityColor(selectedArea.rec.severity) }}
+                >
+                  {selectedArea.rec.severity}
+                </span>
+                <span className="priority-badge">
+                  {selectedArea.rec.priority}
+                </span>
+              </div>
+            </div>
+
+            <div className="modal-content">
+              <div className="detail-section">
+                <h6>
+                  <i className="fas fa-flask"></i>
+                  Key Ingredients
+                </h6>
+                <div className="ingredients-list">
+                  {selectedArea.rec.primaryIngredients && selectedArea.rec.primaryIngredients.map((ingredient, index) => (
+                    <span key={`${selectedArea.area}-ingredient-${index}`} className="ingredient-tag">
+                      {ingredient.replace(/_/g, ' ')}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="detail-section">
+                <h6>
+                  <i className="fas fa-route"></i>
+                  Recommended Routine
+                </h6>
+                <ol>
+                  {selectedArea.rec.routine && selectedArea.rec.routine.map((step, index) => (
+                    <li key={`${selectedArea.area}-routine-${index}`}>
+                      {step.replace(/_/g, ' ')}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="detail-section">
+                <h6>
+                  <i className="fas fa-lightbulb"></i>
+                  Expert Tips
+                </h6>
+                <ul>
+                  {selectedArea.rec.tips && selectedArea.rec.tips.map((tip, index) => (
+                    <li key={`${selectedArea.area}-tip-${index}`}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="timeframe">
+                <strong>Expected results:</strong> {selectedArea.rec.timeframe}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="ai-footer">
         <p className="disclaimer">

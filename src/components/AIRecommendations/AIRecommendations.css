@@ -319,41 +319,216 @@
 }
 
 /* Area Recommendations */
+.area-recommendations {
+  margin-top: 32px;
+}
+
 .area-recommendations h4 {
-  color: #000000;
-  margin-bottom: 20px;
+  color: #D4AF37;
   font-family: var(--font-primary);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #D4AF37;
 }
 
 .areas-grid {
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  max-width: 100%;
+  margin-top: 24px;
+}
+
+/* Modal overlay for expanded content */
+.area-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.area-details-modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+  border: 2px solid #D4AF37;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  z-index: 1001;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
+  color: white;
+  padding: 24px 60px 24px 24px;
+  border-radius: 14px 14px 0 0;
+  position: relative;
+}
+
+.modal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D4AF37 0%, #000000 50%, #D4AF37 100%);
+}
+
+.modal-header h4 {
+  margin: 0 0 12px 0;
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #D4AF37;
+}
+
+.modal-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.modal-content {
+  padding: 24px;
+}
+
+.modal-content .detail-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.modal-content .detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.modal-content .timeframe {
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+  border-radius: 8px;
+  border-left: 4px solid #D4AF37;
+  font-size: 1rem;
+  color: #333333;
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  max-width: 100%;
+  margin-top: 24px;
 }
 
 .area-rec-card {
   background: #FFFFFF;
   border: 1px solid #EEEEEE;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
 }
 
 .area-rec-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  border-color: #D4AF37;
 }
 
 .area-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  cursor: pointer;
+  padding: 20px 24px;
   background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-  border-bottom: 1px solid #EEEEEE;
-  min-height: 60px;
+  min-height: 70px;
+  transition: background 0.2s ease;
+}
+
+.area-header:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+}
+
+.area-header h5 {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
+
+.expand-icon {
+  margin-left: 8px;
+  color: #D4AF37;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.area-rec-card:hover .expand-icon {
+  transform: scale(1.1);
 }
 
 .area-header:hover {
@@ -375,19 +550,21 @@
 .area-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: nowrap;
   justify-content: flex-end;
   flex-shrink: 0;
 }
 
 .severity-badge, .priority-badge {
-  padding: 2px 6px;
-  border-radius: 8px;
-  font-size: 0.65rem;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
   flex-shrink: 0;
   min-width: 0;
@@ -395,11 +572,23 @@
 }
 
 .priority-badge {
-  background: #000000;
-  color: #FFFFFF;
+  background: #D4AF37;
+  color: #000;
+  text-shadow: none;
   max-width: 60px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.expand-icon {
+  margin-left: 8px;
+  color: #D4AF37;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.expanded .expand-icon {
+  transform: rotate(90deg);
 }
 
 .expand-icon {
@@ -563,31 +752,36 @@
     align-items: flex-start;
   }
 
+  .areas-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .area-header {
-    padding: 12px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    min-height: auto;
+    padding: 16px 20px;
+    min-height: 60px;
   }
 
   .area-header h5 {
-    margin-right: 0;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
   }
 
-  .area-meta {
-    align-self: flex-end;
-    gap: 4px;
+  .area-details-modal-content {
+    max-width: 95vw;
+    max-height: 90vh;
+    margin: 10px;
   }
 
-  .severity-badge, .priority-badge {
-    font-size: 0.6rem;
-    padding: 2px 5px;
+  .modal-header {
+    padding: 20px 50px 20px 20px;
   }
 
-  .priority-badge {
-    max-width: 50px;
+  .modal-header h4 {
+    font-size: 1.3rem;
+  }
+
+  .modal-content {
+    padding: 20px;
   }
 }
 
@@ -605,7 +799,29 @@
     padding: 6px 12px;
   }
 
-  .area-details {
-    padding: 20px 16px;
+  .areas-grid {
+    gap: 12px;
+  }
+
+  .area-header {
+    padding: 12px 16px;
+    min-height: 50px;
+  }
+
+  .area-header h5 {
+    font-size: 1rem;
+  }
+
+  .severity-badge, .priority-badge {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+
+  .modal-header {
+    padding: 16px 40px 16px 16px;
+  }
+
+  .modal-content {
+    padding: 16px;
   }
 }
