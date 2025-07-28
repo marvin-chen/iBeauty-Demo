@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SkinAreasGrid from '../../components/AIBot/SkinAreasGrid/SkinAreasGrid';
 import AIBot from '../../components/AIBot/AIBot/AIBot';
+import AIRecommendations from '../../components/AIRecommendations/AIRecommendations';
 import { getUserSkinStats } from '../../services/api';
 import { timeAgo } from '../../utils/helpers';
 import './Dashboard.css';
@@ -9,6 +10,7 @@ function Dashboard() {
   const [skinData, setSkinData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showAIAnalyzing, setShowAIAnalyzing] = useState(false);
+  const [showAIRecommendations, setShowAIRecommendations] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -108,7 +110,7 @@ function Dashboard() {
           <div className="dashboard-stats">
             <div className="stat-card overall-health">
               <div className="stat-icon" style={{ backgroundColor: healthInfo.color }}>
-                <span>❤️</span>
+                <i className="fas fa-heart"></i>
               </div>
               <div className="stat-content">
                 <div className="stat-value" style={{ color: healthInfo.color }}>
@@ -123,7 +125,7 @@ function Dashboard() {
 
             <div className="stat-card improvements">
               <div className="stat-icon">
-                <span>📈</span>
+                <i className="fas fa-chart-line"></i>
               </div>
               <div className="stat-content">
                 <div className="stat-value text-success">{improvementCount}</div>
@@ -134,7 +136,7 @@ function Dashboard() {
 
             <div className="stat-card last-analysis">
               <div className="stat-icon">
-                <span>🕐</span>
+                <i className="fas fa-clock"></i>
               </div>
               <div className="stat-content">
                 <div className="stat-value">{timeAgo(skinData?.lastUpdated)}</div>
@@ -157,19 +159,32 @@ function Dashboard() {
                 </>
               ) : (
                 <>
-                  <span className="btn-icon">🔬</span>
                   Start New AI Analysis
                 </>
               )}
             </button>
             
-            <button className="btn-outline view-history-btn">
-              <span className="btn-icon">📊</span>
+            <button 
+              className="btn-secondary ai-recommendations-btn"
+              onClick={() => setShowAIRecommendations(!showAIRecommendations)}
+              disabled={isLoading || !skinData}
+            >
+              {showAIRecommendations ? 'Hide' : 'Get'} AI Recommendations
+            </button>
+            
+            <button className="btn-secondary view-history-btn">
               View History
             </button>
           </div>
         </div>
       </div>
+
+      {showAIRecommendations && skinData && (
+        <AIRecommendations 
+          skinData={skinData} 
+          className="dashboard-ai-recommendations"
+        />
+      )}
 
       <SkinAreasGrid 
         skinData={skinData} 

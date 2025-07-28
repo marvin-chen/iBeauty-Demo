@@ -41,7 +41,7 @@ function SkinAreaCard({ area, data, showProgress = false, className = '' }) {
       <div className="card-header">
         <div className="area-info">
           <div className="area-icon" style={{ backgroundColor: area.color }}>
-            {area.icon}
+            <i className={area.icon}></i>
           </div>
           <div className="area-details">
             <h3 className="area-name">{area.name}</h3>

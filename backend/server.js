@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs-extra');
 const path = require('path');
+const aiService = require('./services/aiService');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -173,6 +174,100 @@ app.get('/api/users/:userId/rewards', (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// AI-powered recommendations endpoint
+app.post('/api/ai/recommendations', async (req, res) => {
+  try {
+    const { skinData, userProfile } = req.body;
+    
+    if (!skinData || !skinData.areas) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Skin data is required' 
+      });
+    }
+
+    const recommendations = await aiService.generatePersonalizedRecommendations(
+      skinData, 
+      userProfile || {}
+    );
+
+    res.json({
+      success: true,
+      data: recommendations
+    });
+  } catch (error) {
+    console.error('AI recommendations error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to generate recommendations' 
+    });
+  }
+});
+
+// AI-powered goal setting endpoint
+app.post('/api/ai/goals', async (req, res) => {
+  try {
+    const { currentScores, userGoals } = req.body;
+    
+    if (!currentScores) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Current scores are required' 
+      });
+    }
+
+    const smartGoals = await aiService.generateSmartGoals(
+      currentScores,
+      userGoals || {}
+    );
+
+    res.json({
+      success: true,
+      data: smartGoals
+    });
+  } catch (error) {
+    console.error('AI goals error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to generate smart goals' 
+    });
+  }
+});
+
+// Enhanced skin stats endpoint with AI insights
+app.get('/api/users/:userId/skin-stats-ai', async (req, res) => {
+  try {
+    // Get current skin data (using mock data for demo)
+    const skinData = mockSkinData.data;
+    
+    // Generate AI recommendations
+    const recommendations = await aiService.generatePersonalizedRecommendations(skinData);
+    
+    // Generate smart goals
+    const currentScores = {};
+    Object.keys(skinData.areas).forEach(area => {
+      currentScores[area] = skinData.areas[area].currentScore;
+    });
+    const smartGoals = await aiService.generateSmartGoals(currentScores);
+
+    res.json({
+      success: true,
+      data: {
+        ...skinData,
+        aiRecommendations: recommendations,
+        smartGoals: smartGoals,
+        aiEnhanced: true
+      }
+    });
+  } catch (error) {
+    console.error('AI-enhanced skin stats error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to get AI-enhanced skin stats' 
+    });
   }
 });
 

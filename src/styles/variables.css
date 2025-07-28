@@ -1,16 +1,16 @@
 :root {
-  /* Colors */
-  --color-primary: #4A90E2;
-  --color-primary-dark: #357ABD;
-  --color-primary-light: #6BA3E6;
+  /* L'Oréal Brand Colors */
+  --color-primary: #000000;        /* Classic Black */
+  --color-primary-dark: #1a1a1a;
+  --color-primary-light: #333333;
   
-  --color-secondary: #50C878;
-  --color-secondary-dark: #45B86A;
-  --color-secondary-light: #65CF86;
+  --color-secondary: #D4AF37;      /* Luxurious Gold */
+  --color-secondary-dark: #B8941F;
+  --color-secondary-light: #E6C756;
   
-  --color-accent: #FF6B6B;
-  --color-accent-dark: #E55555;
-  --color-accent-light: #FF8080;
+  --color-accent: #FFFFFF;         /* Pure White */
+  --color-accent-dark: #F8F8F8;
+  --color-accent-light: #FFFFFF;
   
   --color-warning: #FFD93D;
   --color-warning-dark: #E6C235;
@@ -24,32 +24,33 @@
   --color-success-dark: #27AE60;
   --color-success-light: #58D68D;
   
-  /* Grays */
+  /* L'Oréal Signature Grays */
   --color-white: #FFFFFF;
-  --color-light-gray: #F8F9FA;
-  --color-gray: #E9ECEF;
-  --color-medium-gray: #ADB5BD;
-  --color-dark-gray: #6C757D;
-  --color-darker-gray: #495057;
-  --color-darkest-gray: #343A40;
+  --color-light-gray: #F9F9F9;
+  --color-gray: #EEEEEE;
+  --color-medium-gray: #CCCCCC;
+  --color-dark-gray: #666666;
+  --color-darker-gray: #333333;
+  --color-darkest-gray: #000000;
   --color-black: #000000;
   
   /* Backgrounds */
   --bg-primary: var(--color-white);
   --bg-secondary: var(--color-light-gray);
-  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient: linear-gradient(135deg, #000000 0%, #333333 50%, #D4AF37 100%);
   --bg-card: var(--color-white);
-  --bg-overlay: rgba(0, 0, 0, 0.5);
+  --bg-overlay: rgba(0, 0, 0, 0.7);
   
   /* Text */
-  --text-primary: var(--color-darkest-gray);
-  --text-secondary: var(--color-dark-gray);
-  --text-muted: var(--color-medium-gray);
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-darker-gray);
+  --text-muted: var(--color-dark-gray);
   --text-inverse: var(--color-white);
+  --text-gold: var(--color-secondary);
   
-  /* Typography */
-  --font-primary: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-secondary: 'Helvetica Neue', Arial, sans-serif;
+  /* Typography - Elegant Fonts */
+  --font-primary: 'Playfair Display', 'Georgia', serif;
+  --font-secondary: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Consolas', 'Monaco', monospace;
   
   --font-size-xs: 0.75rem;     /* 12px */

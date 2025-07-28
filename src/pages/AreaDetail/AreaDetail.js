@@ -127,7 +127,7 @@ function AreaDetail() {
 
         <div className="area-hero">
           <div className="area-icon-large" style={{ backgroundColor: area.color }}>
-            <span>{area.icon}</span>
+            <i className={area.icon}></i>
           </div>
           
           <div className="area-info">

@@ -130,5 +130,39 @@ export const getAnalysisStatus = async (analysisId) => {
   }
 };
 
+// AI APIs
+export const getAIRecommendations = async (skinData, userProfile = {}) => {
+  try {
+    const data = await api.post('/ai/recommendations', { 
+      skinData, 
+      userProfile 
+    });
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get AI recommendations: ${error.message}`);
+  }
+};
+
+export const generateSmartGoals = async (currentScores, userGoals = {}) => {
+  try {
+    const data = await api.post('/ai/goals', { 
+      currentScores, 
+      userGoals 
+    });
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to generate smart goals: ${error.message}`);
+  }
+};
+
+export const getAIEnhancedSkinStats = async (userId) => {
+  try {
+    const data = await api.get(`/users/${userId}/skin-stats-ai`);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get AI-enhanced skin stats: ${error.message}`);
+  }
+};
+
 // Export the axios instance for custom requests
 export default api;

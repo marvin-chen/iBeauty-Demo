@@ -14,7 +14,6 @@ function Header() {
       <div className="header-container">
         <div className="header-left">
           <Link to="/" className="header-logo">
-            <span className="logo-icon">✨</span>
             <span className="logo-text">iBeauty</span>
           </Link>
         </div>
@@ -24,22 +23,26 @@ function Header() {
             to="/" 
             className={`nav-link ${isActive('/') ? 'nav-link-active' : ''}`}
           >
-            <span className="nav-icon">🏠</span>
             Dashboard
           </Link>
           <Link 
             to="/rewards" 
             className={`nav-link ${isActive('/rewards') ? 'nav-link-active' : ''}`}
           >
-            <span className="nav-icon">🎁</span>
             Rewards
+          </Link>
+          <Link 
+            to="/about" 
+            className={`nav-link ${isActive('/about') ? 'nav-link-active' : ''}`}
+          >
+            About
           </Link>
         </nav>
 
         <div className="header-right">
           <div className="user-profile">
             <div className="user-avatar">
-              <span>👤</span>
+              <span><i className="fas fa-user"></i></span>
             </div>
             <div className="user-info">
               <span className="user-name">Demo User</span>
