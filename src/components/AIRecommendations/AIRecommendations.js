@@ -1,6 +1,7 @@
 // src/components/AIRecommendations/AIRecommendations.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { getAIRecommendations } from '../../services/api';
+import { SKIN_AREAS } from '../../utils/skinAreas';
 import './AIRecommendations.css';
 
 function AIRecommendations({ skinData, className = '' }) {
@@ -47,6 +48,11 @@ function AIRecommendations({ skinData, className = '' }) {
       case 'actionable': return <i className="fas fa-target" />;
       default: return <i className="fas fa-info-circle" />;
     }
+  };
+
+  const getAreaDisplayName = (areaId) => {
+    const area = SKIN_AREAS.find(a => a.id === areaId);
+    return area ? area.name : areaId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   };
 
   if (isLoading) {
@@ -161,7 +167,7 @@ function AIRecommendations({ skinData, className = '' }) {
                 className="area-header"
                 onClick={() => setExpandedArea(expandedArea === area ? null : area)}
               >
-                <h5>{area.replace(/_/g, ' ')}</h5>
+                <h5>{getAreaDisplayName(area)}</h5>
                 <div className="area-meta">
                   <span 
                     className="severity-badge"
@@ -170,7 +176,7 @@ function AIRecommendations({ skinData, className = '' }) {
                     {rec.severity}
                   </span>
                   <span className="priority-badge">
-                    {rec.priority} priority
+                    {rec.priority}
                   </span>
                   <span className="expand-icon">
                     <i className={`fas ${expandedArea === area ? 'fa-chevron-down' : 'fa-chevron-right'}`}></i>

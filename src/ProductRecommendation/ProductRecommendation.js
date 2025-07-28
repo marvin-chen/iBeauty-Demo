@@ -6,6 +6,7 @@ function ProductRecommendation({
   reason = '', 
   priority = 'medium',
   showDetails = false,
+  hideActions = false,
   onAddToCart,
   onViewDetails,
   className = ''
@@ -48,13 +49,9 @@ function ProductRecommendation({
     <div className={`product-recommendation ${className}`}>
       <div className="recommendation-header">
         <div className="product-image">
-          <img 
-            src={product.image || '/placeholder-product.jpg'} 
-            alt={product.name}
-            onError={(e) => {
-              e.target.src = '/placeholder-product.jpg';
-            }}
-          />
+          <div className="product-icon-placeholder">
+            <i className="fas fa-box" style={{ fontSize: '2rem', color: '#D4AF37' }}></i>
+          </div>
         </div>
         
         <div className="product-info">
@@ -152,21 +149,23 @@ function ProductRecommendation({
         </div>
       )}
 
-      <div className="recommendation-actions">
-        <button 
-          className="btn-outline view-details-btn"
-          onClick={handleViewDetails}
-        >
-          View Details
-        </button>
-        <button 
-          className="btn-primary add-to-cart-btn"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-          <span className="cart-icon">🛒</span>
-        </button>
-      </div>
+      {!hideActions && (
+        <div className="recommendation-actions">
+          <button 
+            className="btn-outline view-details-btn"
+            onClick={handleViewDetails}
+          >
+            View Details
+          </button>
+          <button 
+            className="btn-primary add-to-cart-btn"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+            <span className="cart-icon">🛒</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -89,7 +89,7 @@ const mockProducts = {
     {
       id: '1',
       name: 'Hydrating Serum',
-      brand: 'iBeauty Pro',
+      brand: 'iBeauty',
       price: 29.99,
       salePrice: 24.99,
       image: '/placeholder-product.jpg',
@@ -105,7 +105,7 @@ const mockProducts = {
     {
       id: '2',
       name: 'Brightening Treatment',
-      brand: 'iBeauty Pro',
+      brand: 'iBeauty',
       price: 34.99,
       image: '/placeholder-product.jpg',
       description: 'Gentle brightening treatment to reduce dark spots and even skin tone.',
@@ -120,7 +120,7 @@ const mockProducts = {
     {
       id: '3',
       name: 'Gentle Cleanser',
-      brand: 'iBeauty Pro',
+      brand: 'iBeauty',
       price: 19.99,
       image: '/placeholder-product.jpg',
       description: 'Gentle daily cleanser that removes impurities without stripping the skin.',

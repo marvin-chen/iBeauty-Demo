@@ -6,8 +6,24 @@ export const formatScore = (score, decimals = 0) => {
 
 // Format dates
 export const formatDate = (date) => {
-  if (!date) return '--';
-  return new Date(date).toLocaleDateString('en-US', {
+  if (!date) return new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short', 
+    day: 'numeric'
+  });
+  
+  const dateObj = new Date(date);
+  
+  // Handle invalid dates
+  if (isNaN(dateObj.getTime())) {
+    return new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short', 
+      day: 'numeric'
+    });
+  }
+  
+  return dateObj.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short', 
     day: 'numeric'

@@ -42,8 +42,25 @@
   transition: transform var(--transition-normal);
 }
 
+.product-icon-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+  border: 2px solid #EEEEEE;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
 .product-recommendation:hover .product-image img {
   transform: scale(1.05);
+}
+
+.product-recommendation:hover .product-icon-placeholder {
+  background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+  border-color: #D4AF37;
 }
 
 .product-info {
@@ -68,6 +85,7 @@
   line-height: var(--line-height-tight);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

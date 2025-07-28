@@ -56,10 +56,6 @@ function AreaDetail() {
     loadRecommendations();
   }, [area, loadAreaData, loadRecommendations]);
 
-  const handleSetNewGoal = () => {
-    setShowAI(true);
-  };
-
   const handleAIComplete = () => {
     setShowAI(false);
     // Simulate goal update
@@ -217,11 +213,7 @@ function AreaDetail() {
           {/* AI Goals Section */}
           <div className="goals-section">
             <div className="section-header">
-              <h2>AI-Powered Goals</h2>
-              <button className="btn-primary" onClick={handleSetNewGoal}>
-                <span className="btn-icon">🤖</span>
-                Set New AI Goal
-              </button>
+              <h2>AI Analysis</h2>
             </div>
 
             {areaData.aiRecommendation && (
@@ -235,6 +227,12 @@ function AreaDetail() {
                   <span>Confidence: {Math.round(areaData.aiRecommendation.confidence * 100)}%</span>
                   <span>Timeframe: {areaData.aiRecommendation.timeframe}</span>
                 </div>
+              </div>
+            )}
+
+            {!areaData.aiRecommendation && (
+              <div className="no-ai-recommendation">
+                <p>Complete a full skin analysis to receive personalized AI recommendations for this area.</p>
               </div>
             )}
           </div>
@@ -251,8 +249,7 @@ function AreaDetail() {
                     reason={product.recommendation_reason}
                     priority={product.priority || 'medium'}
                     showDetails={true}
-                    onAddToCart={(product) => console.log('Add to cart:', product)}
-                    onViewDetails={(product) => console.log('View details:', product)}
+                    hideActions={true}
                   />
                 ))}
               </div>
@@ -275,10 +272,11 @@ function AreaDetail() {
           <div className="history-card">
             <h3>Analysis History</h3>
             <div className="history-item">
-              <span className="history-date">{formatDate(skinData.lastUpdated)}</span>
+              <span className="history-date">
+                {skinData.lastUpdated ? formatDate(skinData.lastUpdated) : 'Today'}
+              </span>
               <span className="history-score">{formatScore(currentScore)}</span>
             </div>
-            <button className="btn-outline btn-sm">View Full History</button>
           </div>
         </div>
       </div>
