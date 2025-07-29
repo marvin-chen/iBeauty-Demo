@@ -10,6 +10,7 @@ function Dashboard() {
   const [skinData, setSkinData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showAIAnalyzing, setShowAIAnalyzing] = useState(false);
+  const [showAnalysisComplete, setShowAnalysisComplete] = useState(false);
   const [showAIRecommendations, setShowAIRecommendations] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showResultsModal, setShowResultsModal] = useState(false);
@@ -44,6 +45,7 @@ function Dashboard() {
 
   const handleAIComplete = () => {
     setShowAIAnalyzing(false);
+    setShowAnalysisComplete(true);
     // Simulate new analysis results and show changes
     const previousData = JSON.parse(localStorage.getItem('previousAnalysis') || 'null');
     loadSkinData().then(() => {
@@ -51,6 +53,10 @@ function Dashboard() {
         showAnalysisComparison(previousData);
       }
     });
+  };
+
+  const handleCloseAnalysisComplete = () => {
+    setShowAnalysisComplete(false);
   };
 
   const showAnalysisComparison = (previousData) => {
@@ -195,9 +201,26 @@ function Dashboard() {
           message="🔬 L'Oréal AI is analyzing your skin across all 8 concern areas... Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
           isActive={true}
           type="analyzing"
-          duration={18000}
+          duration={3000}
           onComplete={handleAIComplete}
         />
+      )}
+
+      {showAnalysisComplete && (
+        <div className="ai-analysis-overlay">
+          <div className="analysis-complete-popup">
+            <button className="close-button" onClick={handleCloseAnalysisComplete} title="Close">
+              <i className="fas fa-times"></i>
+            </button>
+            <div className="completion-content">
+              <div className="completion-icon">
+                <i className="fas fa-check-circle"></i>
+              </div>
+              <h3>Analysis Complete!</h3>
+              <p>Your personalized recommendations are ready</p>
+            </div>
+          </div>
+        </div>
       )}
 
       <div className="dashboard-header">
