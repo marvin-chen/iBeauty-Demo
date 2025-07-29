@@ -333,10 +333,13 @@ function Dashboard() {
       </div>
 
       {showAIRecommendations && skinData && (
-        <AIRecommendations 
-          skinData={skinData} 
-          className="dashboard-ai-recommendations"
-        />
+        <>
+          {console.log('🎯 Showing AIRecommendations component')}
+          <AIRecommendations 
+            skinData={skinData} 
+            className="dashboard-ai-recommendations"
+          />
+        </>
       )}
 
       <SkinAreasGrid 

@@ -5,6 +5,8 @@ import { SKIN_AREAS } from '../../utils/skinAreas';
 import './AIRecommendations.css';
 
 function AIRecommendations({ skinData, className = '' }) {
+  console.log('🎯 AIRecommendations component mounted with skinData:', !!skinData);
+  
   const [recommendations, setRecommendations] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
