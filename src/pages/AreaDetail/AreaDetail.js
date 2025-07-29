@@ -116,23 +116,24 @@ function AreaDetail() {
       )}
 
       <div className="area-detail-header">
-        <button className="back-button" onClick={() => navigate('/')}>
-          <span className="back-arrow">←</span>
-          Back to Dashboard
-        </button>
+        <div className="header-container">
+          <button className="back-button" onClick={() => navigate('/')}>
+            <span className="back-arrow">←</span>
+          </button>
 
-        <div className="area-hero">
-          <div className="area-icon-large" style={{ backgroundColor: area.color }}>
-            <i className={area.icon}></i>
-          </div>
-          
-          <div className="area-info">
-            <h1>{area.name}</h1>
-            <p className="area-description">{area.description}</p>
-            <div className="area-category">
-              <span className="category-tag" style={{ backgroundColor: area.color + '20', color: area.color }}>
-                {area.category}
-              </span>
+          <div className="area-hero">
+            <div className="area-icon-large" style={{ backgroundColor: area.color }}>
+              <i className={area.icon}></i>
+            </div>
+            
+            <div className="area-info">
+              <h1>{area.name}</h1>
+              <p className="area-description">{area.description}</p>
+              <div className="area-category">
+                <span className="category-tag" style={{ backgroundColor: area.color + '20', color: area.color }}>
+                  {area.category}
+                </span>
+              </div>
             </div>
           </div>
         </div>
