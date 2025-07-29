@@ -61,6 +61,12 @@ function Dashboard() {
     setShowAnalysisComplete(false);
   };
 
+  const handleGetAIRecommendations = () => {
+    console.log('🎯 Get AI Recommendations button clicked');
+    setShowAIRecommendations(true);
+    console.log('🎯 setShowAIRecommendations(true) called');
+  };
+
   const showAnalysisComparison = (previousData) => {
     // Calculate changes between previous and current analysis
     const changes = [];
@@ -198,6 +204,7 @@ function Dashboard() {
 
   // Debug log for AIBot state
   console.log('🤖 Dashboard Render - showAIAnalyzing:', showAIAnalyzing);
+  console.log('🎯 Dashboard Render - showAIRecommendations:', showAIRecommendations);
 
   return (
     <div className="dashboard">
@@ -583,7 +590,7 @@ function Dashboard() {
               <button className="btn-secondary" onClick={handleCloseResults}>
                 Got it!
               </button>
-              <button className="btn-primary" onClick={() => setShowAIRecommendations(true)}>
+              <button className="btn-primary" onClick={handleGetAIRecommendations}>
                 <i className="fas fa-robot"></i>
                 Get AI Recommendations
               </button>
