@@ -38,10 +38,6 @@ function About() {
                 <h4>L'Oréal Expertise</h4>
                 <p>Backed by decades of cosmetic research and innovation</p>
               </div>
-              <div className="feature-card">
-                <h4>Progress Tracking</h4>
-                <p>Monitor your skin health improvements over time</p>
-              </div>
             </div>
           </div>
         </section>
@@ -53,8 +49,8 @@ function About() {
             <div className="steps-grid">
               <div className="step-card">
                 <div className="step-number">1</div>
-                <h4>Take a Photo</h4>
-                <p>Use our secure photo upload feature to capture your skin's current state</p>
+                <h4>Use DermaReader Photos</h4>
+                <p>Auto-connect with the DermaReader device for seamless skin analysis</p>
               </div>
               <div className="step-card">
                 <div className="step-number">2</div>
@@ -177,13 +173,6 @@ function About() {
                 <p>
                   Specific recommendations for each skin concern, including ingredient suggestions 
                   and expected timeframes for visible improvements.
-                </p>
-              </div>
-              <div className="rec-type-card">
-                <h4>Progress Tracking</h4>
-                <p>
-                  Regular analysis helps track your skin's improvement over time and adjusts 
-                  recommendations based on your progress.
                 </p>
               </div>
             </div>

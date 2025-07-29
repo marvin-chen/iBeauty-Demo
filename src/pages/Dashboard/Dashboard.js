@@ -12,6 +12,8 @@ function Dashboard() {
   const [showAIAnalyzing, setShowAIAnalyzing] = useState(false);
   const [showAIRecommendations, setShowAIRecommendations] = useState(false);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(false);
+  const [analysisComparison, setAnalysisComparison] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -34,12 +36,51 @@ function Dashboard() {
 
   const handleNewAnalysis = () => {
     setShowAIAnalyzing(true);
+    // Store previous data for comparison
+    if (skinData) {
+      localStorage.setItem('previousAnalysis', JSON.stringify(skinData));
+    }
   };
 
   const handleAIComplete = () => {
     setShowAIAnalyzing(false);
-    // Simulate new analysis results
-    loadSkinData();
+    // Simulate new analysis results and show changes
+    const previousData = JSON.parse(localStorage.getItem('previousAnalysis') || 'null');
+    loadSkinData().then(() => {
+      if (previousData) {
+        showAnalysisComparison(previousData);
+      }
+    });
+  };
+
+  const showAnalysisComparison = (previousData) => {
+    // Calculate changes between previous and current analysis
+    const changes = [];
+    Object.keys(skinData?.areas || {}).forEach(area => {
+      const currentScore = skinData.areas[area] || 0;
+      const previousScore = previousData.areas[area] || 0;
+      const difference = currentScore - previousScore;
+      
+      if (Math.abs(difference) > 1) {
+        changes.push({
+          area,
+          previous: previousScore,
+          current: currentScore,
+          change: difference,
+          improved: difference < 0
+        });
+      }
+    });
+    
+    if (changes.length > 0) {
+      setAnalysisComparison({ previous: previousData, current: skinData, changes });
+      setShowResultsModal(true);
+    }
+  };
+
+  const handleCloseResults = () => {
+    setShowResultsModal(false);
+    setAnalysisComparison(null);
   };
 
   // Mock history data
@@ -151,10 +192,10 @@ function Dashboard() {
     <div className="dashboard">
       {showAIAnalyzing && (
         <AIBot 
-          message="Analyzing your skin across all 8 concern areas... Setting personalized improvement goals based on your unique profile..."
+          message="🔬 L'Oréal AI is analyzing your skin across all 8 concern areas... Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
           isActive={true}
           type="analyzing"
-          duration={4000}
+          duration={18000}
           onComplete={handleAIComplete}
         />
       )}
@@ -215,12 +256,32 @@ function Dashboard() {
             >
               {showAIAnalyzing ? (
                 <>
-                  <div className="btn-spinner"></div>
-                  Analyzing...
+                  <div className="advanced-spinner">
+                    <div className="spinner-ring"></div>
+                    <div className="spinner-ring"></div>
+                    <div className="spinner-ring"></div>
+                  </div>
+                  <span className="analyzing-text">
+                    Analyzing...
+                    <span className="analyzing-dots">
+                      <span>.</span>
+                      <span>.</span>
+                      <span>.</span>
+                    </span>
+                  </span>
                 </>
               ) : (
                 <>
-                  Start New AI Analysis
+                  <span className="btn-icon">
+                    <i className="fas fa-microscope"></i>
+                  </span>
+                  <span className="btn-text">Start New AI Analysis</span>
+                  <div className="btn-particles">
+                    <span className="particle"></span>
+                    <span className="particle"></span>
+                    <span className="particle"></span>
+                    <span className="particle"></span>
+                  </div>
                 </>
               )}
             </button>
@@ -391,6 +452,109 @@ function Dashboard() {
               <button className="btn-primary">
                 <i className="fas fa-download"></i>
                 Export History
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Analysis Results Comparison Modal */}
+      {showResultsModal && analysisComparison && (
+        <div className="modal-overlay" onClick={handleCloseResults}>
+          <div className="results-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>
+                <i className="fas fa-chart-line"></i>
+                Analysis Complete - Here's What Changed
+              </h2>
+              <button className="modal-close" onClick={handleCloseResults}>
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="results-summary">
+                <div className="summary-stats">
+                  <div className="stat-item improved">
+                    <div className="stat-icon">
+                      <i className="fas fa-arrow-up"></i>
+                    </div>
+                    <div className="stat-info">
+                      <span className="stat-number">
+                        {analysisComparison.changes.filter(c => c.improved).length}
+                      </span>
+                      <span className="stat-label">Areas Improved</span>
+                    </div>
+                  </div>
+                  
+                  <div className="stat-item attention">
+                    <div className="stat-icon">
+                      <i className="fas fa-arrow-down"></i>
+                    </div>
+                    <div className="stat-info">
+                      <span className="stat-number">
+                        {analysisComparison.changes.filter(c => !c.improved).length}
+                      </span>
+                      <span className="stat-label">Need Attention</span>
+                    </div>
+                  </div>
+                  
+                  <div className="stat-item total">
+                    <div className="stat-icon">
+                      <i className="fas fa-exchange-alt"></i>
+                    </div>
+                    <div className="stat-info">
+                      <span className="stat-number">{analysisComparison.changes.length}</span>
+                      <span className="stat-label">Total Changes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="changes-list">
+                <h3>Detailed Changes</h3>
+                {analysisComparison.changes.map((change, index) => (
+                  <div key={index} className={`change-item ${change.improved ? 'improved' : 'declined'}`}>
+                    <div className="change-icon">
+                      <i className={`fas ${change.improved ? 'fa-arrow-down text-success' : 'fa-arrow-up text-warning'}`}></i>
+                    </div>
+                    <div className="change-info">
+                      <h4>{change.area.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                      <div className="change-scores">
+                        <span className="previous-score">Was: {change.previous}</span>
+                        <span className="arrow">→</span>
+                        <span className="current-score">Now: {change.current}</span>
+                      </div>
+                      <div className="change-amount">
+                        {change.improved ? 'Improved' : 'Increased'} by {Math.abs(change.change)} points
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="ai-insights">
+                <h3>
+                  <i className="fas fa-lightbulb"></i>
+                  AI Insights
+                </h3>
+                <div className="insight-card">
+                  <p>
+                    {analysisComparison.changes.filter(c => c.improved).length > analysisComparison.changes.filter(c => !c.improved).length
+                      ? "Great progress! Your skincare routine is working effectively. Continue with your current regimen."
+                      : "Some areas need attention. Consider adjusting your routine or consulting with our AI recommendations."}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="modal-footer">
+              <button className="btn-secondary" onClick={handleCloseResults}>
+                Got it!
+              </button>
+              <button className="btn-primary" onClick={() => setShowAIRecommendations(true)}>
+                <i className="fas fa-robot"></i>
+                Get AI Recommendations
               </button>
             </div>
           </div>
