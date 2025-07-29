@@ -72,6 +72,27 @@ const FALLBACK_SKIN_DATA = {
         progress: 40,
         previousScore: 48,
         lastAnalyzed: new Date().toISOString()
+      },
+      texture: {
+        currentScore: 35,
+        goal: 25,
+        progress: 55,
+        previousScore: 42,
+        lastAnalyzed: new Date().toISOString()
+      },
+      clogged_pores: {
+        currentScore: 22,
+        goal: 15,
+        progress: 65,
+        previousScore: 28,
+        lastAnalyzed: new Date().toISOString()
+      },
+      emerging_dark_spots: {
+        currentScore: 18,
+        goal: 12,
+        progress: 70,
+        previousScore: 24,
+        lastAnalyzed: new Date().toISOString()
       }
     }
   }
@@ -112,6 +133,39 @@ const FALLBACK_PRODUCTS = {
       ingredients: ['Vitamin C', 'Niacinamide', 'Glycolic Acid'],
       imageUrl: 'https://via.placeholder.com/200x200?text=L%27Oreal+Brightening',
       targetAreas: ['surface_spots', 'uv_damage', 'dark_circles']
+    },
+    {
+      id: 'loreal-texture-refining-toner',
+      name: 'L\'Oréal Texture Refining Toner',
+      brand: 'L\'Oréal',
+      price: 16.99,
+      rating: 4.2,
+      description: 'Exfoliating toner with AHA/BHA for smooth skin texture',
+      ingredients: ['Salicylic Acid', 'Glycolic Acid', 'Niacinamide'],
+      imageUrl: 'https://via.placeholder.com/200x200?text=L%27Oreal+Toner',
+      targetAreas: ['texture', 'clogged_pores', 'enlarged_pores']
+    },
+    {
+      id: 'loreal-pore-minimizing-serum',
+      name: 'L\'Oréal Pore Minimizing Serum',
+      brand: 'L\'Oréal',
+      price: 21.99,
+      rating: 4.3,
+      description: 'Targeted serum for clogged pores and blackheads',
+      ingredients: ['Niacinamide', 'Zinc PCA', 'Salicylic Acid'],
+      imageUrl: 'https://via.placeholder.com/200x200?text=L%27Oreal+Pore+Serum',
+      targetAreas: ['clogged_pores', 'enlarged_pores', 'texture']
+    },
+    {
+      id: 'loreal-dark-spot-corrector',
+      name: 'L\'Oréal Dark Spot Corrector',
+      brand: 'L\'Oréal',
+      price: 18.99,
+      rating: 4.5,
+      description: 'Intensive treatment for emerging dark spots',
+      ingredients: ['Kojic Acid', 'Vitamin C', 'Alpha Arbutin'],
+      imageUrl: 'https://via.placeholder.com/200x200?text=L%27Oreal+Dark+Spot',
+      targetAreas: ['emerging_dark_spots', 'surface_spots', 'uv_damage']
     }
   ]
 };
@@ -143,6 +197,46 @@ const MOCK_AI_RECOMMENDATIONS = {
         routine: ['Gentle_cleanser', 'Soothing_toner', 'Barrier_repair_moisturizer'],
         tips: ['Avoid harsh ingredients', 'Use gentle products', 'Patch test new products'],
         timeframe: '4-6 weeks for improvement'
+      },
+      enlarged_pores: {
+        severity: 'moderate',
+        priority: 'medium',
+        primaryIngredients: ['Niacinamide', 'Salicylic_Acid', 'Retinol'],
+        routine: ['BHA_cleanser', 'Niacinamide_serum', 'Oil_free_moisturizer'],
+        tips: ['Regular exfoliation helps', 'Keep skin hydrated', 'Avoid over-cleansing'],
+        timeframe: '6-10 weeks for visible improvement'
+      },
+      uv_damage: {
+        severity: 'moderate',
+        priority: 'high',
+        primaryIngredients: ['Vitamin_C', 'Tretinoin', 'Alpha_Arbutin'],
+        routine: ['Antioxidant_serum_morning', 'Retinoid_evening', 'SPF_50_daily'],
+        tips: ['Prevention is crucial', 'Daily SPF is non-negotiable', 'Night repair products'],
+        timeframe: '8-12 weeks for improvement'
+      },
+      texture: {
+        severity: 'moderate',
+        priority: 'medium',
+        primaryIngredients: ['AHA', 'BHA', 'Peptides'],
+        routine: ['Exfoliating_toner', 'Texture_refining_serum', 'Hydrating_moisturizer'],
+        tips: ['Gentle exfoliation works best', 'Hydration is key', 'Be consistent'],
+        timeframe: '4-8 weeks for smoother texture'
+      },
+      clogged_pores: {
+        severity: 'mild',
+        priority: 'medium',
+        primaryIngredients: ['Salicylic_Acid', 'Niacinamide', 'Zinc'],
+        routine: ['BHA_cleanser', 'Pore_clearing_serum', 'Non_comedogenic_moisturizer'],
+        tips: ['Regular deep cleansing', 'Avoid pore-clogging ingredients', 'Weekly clay masks'],
+        timeframe: '4-6 weeks for clearer pores'
+      },
+      emerging_dark_spots: {
+        severity: 'mild',
+        priority: 'high',
+        primaryIngredients: ['Kojic_Acid', 'Vitamin_C', 'Alpha_Arbutin'],
+        routine: ['Brightening_cleanser', 'Dark_spot_serum', 'SPF_protection'],
+        tips: ['Early intervention is best', 'Consistent use required', 'Protect from further damage'],
+        timeframe: '6-8 weeks for fading'
       }
     },
     consolidatedRoutine: {
