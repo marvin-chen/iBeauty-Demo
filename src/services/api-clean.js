@@ -121,11 +121,6 @@ export const getUserProfile = async (userId) => {
 
 export const getUserRewards = async (userId) => {
   try {
-    // In production/deployment, always use fallback data
-    if (process.env.NODE_ENV === 'production' || !API_BASE_URL.includes('localhost')) {
-      return FALLBACK_USER_REWARDS;
-    }
-    
     const response = await api.get(`/users/${userId}/rewards`);
     return response.data;
   } catch (error) {
@@ -155,11 +150,6 @@ export const redeemReward = async (userId, rewardId) => {
 // Product APIs
 export const getProductRecommendations = async (areaId, userId = null) => {
   try {
-    // In production/deployment, always use fallback data
-    if (process.env.NODE_ENV === 'production' || !API_BASE_URL.includes('localhost')) {
-      return FALLBACK_PRODUCTS;
-    }
-    
     const response = await api.get(`/products/recommendations/${areaId}`, {
       params: { userId }
     });
@@ -172,15 +162,6 @@ export const getProductRecommendations = async (areaId, userId = null) => {
 
 export const getProduct = async (productId) => {
   try {
-    // In production/deployment, always use fallback data
-    if (process.env.NODE_ENV === 'production' || !API_BASE_URL.includes('localhost')) {
-      const product = FALLBACK_PRODUCTS.products.find(p => p.id === productId);
-      return {
-        success: true,
-        data: product || FALLBACK_PRODUCTS.products[0]
-      };
-    }
-    
     const response = await api.get(`/products/${productId}`);
     return response.data;
   } catch (error) {
@@ -244,11 +225,6 @@ export const getAnalysisStatus = async (analysisId) => {
 // AI-powered features
 export const getAIRecommendations = async (skinData, userProfile = {}) => {
   try {
-    // In production/deployment, always use fallback data
-    if (process.env.NODE_ENV === 'production' || !API_BASE_URL.includes('localhost')) {
-      return FALLBACK_AI_RECOMMENDATIONS;
-    }
-    
     const response = await api.post('/ai/recommendations', {
       skinData,
       userProfile

@@ -68,6 +68,38 @@ vercel
    npm run build
    ```
 
+## Tech Stack
+
+### Frontend
+- **React 18.2.0** - Modern UI library with hooks and functional components
+- **JavaScript ES6+** - Modern JavaScript features and async/await patterns
+- **CSS3** - Custom styling with CSS Grid, Flexbox, and animations
+- **Axios** - HTTP client for API requests with intelligent fallback system
+
+### Backend & Data
+- **Node.js** - JavaScript runtime for serverless functions
+- **Express.js** - Web framework for optional backend server
+- **JSON** - Structured data storage for user profiles and product catalog
+- **Centralized Mock Data** - Single source of truth data architecture
+
+### Deployment & Infrastructure
+- **Vercel** - Serverless deployment platform with automatic CI/CD
+- **Vercel Functions** - Serverless API endpoints for production
+- **Static Site Generation** - Optimized React build for fast loading
+- **CORS Support** - Cross-origin resource sharing for API access
+
+### Development Tools
+- **npm** - Package management and build scripts
+- **Create React App** - Development environment and build tooling
+- **React Router** - Client-side routing for single-page application
+- **Git** - Version control with GitHub integration
+
+### AI & Analytics Simulation
+- **Mock AI Engine** - Simulated skin analysis algorithms
+- **Dynamic Scoring** - Real-time skin assessment calculations
+- **Progress Tracking** - Temporal analysis and improvement metrics
+- **Recommendation Engine** - Product matching based on skin concerns
+
 ## Project Architecture
 
 ```
