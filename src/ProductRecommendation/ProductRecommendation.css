@@ -1,17 +1,21 @@
 /* Product Recommendation Card - Clean Professional Design */
 .product-recommendation {
   background: #FFFFFF;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  border: 1px solid #F0F0F0;
-  margin-bottom: 16px;
+  border-radius: 16px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #EEEEEE;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .product-recommendation:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* Product Header - Horizontal Layout */
@@ -290,6 +294,9 @@
 .recommendation-actions {
   display: flex;
   gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .view-details-btn, .add-to-cart-btn {
@@ -303,6 +310,12 @@
   gap: var(--spacing-xs);
   transition: all var(--transition-fast);
   cursor: pointer;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cart-icon {
@@ -313,6 +326,9 @@
 @media (max-width: 768px) {
   .product-recommendation {
     padding: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   
   .recommendation-header {
@@ -330,6 +346,39 @@
   
   .recommendation-actions {
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: var(--spacing-sm);
+  }
+  
+  .view-details-btn, .add-to-cart-btn {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+    min-height: 44px; /* Touch-friendly size */
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .product-recommendation {
+    padding: 12px;
+    margin: 0 4px 16px 4px;
+  }
+  
+  .view-details-btn, .add-to-cart-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .recommendation-actions {
+    padding: 0;
+    margin: 0;
   }
 }
 

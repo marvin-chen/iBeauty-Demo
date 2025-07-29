@@ -9,12 +9,24 @@
   text-decoration: none;
   color: inherit;
   transition: transform var(--transition-normal);
+  display: block;
+  border-radius: var(--radius-xl);
+  touch-action: manipulation; /* Improve touch responsiveness */
 }
 
-.skin-area-link:hover {
+.skin-area-link:hover,
+.skin-area-link:focus {
   transform: translateY(-4px);
   text-decoration: none;
   color: inherit;
+}
+
+/* Touch-friendly interactions for mobile */
+@media (max-width: 768px) {
+  .skin-area-link:active {
+    transform: translateY(-2px) scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
 }
 
 /* Loading skeletons */

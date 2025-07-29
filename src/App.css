@@ -3,6 +3,8 @@
   background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 50%, #ffffff 100%);
   font-family: var(--font-secondary);
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .App::before {
@@ -21,6 +23,8 @@
   max-width: 1400px;
   margin: 0 auto;
   min-height: calc(100vh - 80px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Loading states */

@@ -3,6 +3,8 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
   font-family: var(--font-secondary);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Header Section */
@@ -11,6 +13,7 @@
   color: #D4AF37;
   padding: 40px 0;
   position: relative;
+  width: 100%;
 }
 
 .area-detail-header::after {
@@ -36,10 +39,10 @@
   align-items: center;
   gap: 8px;
   margin: 0 auto 30px;
-  max-width: 1200px;
-  margin-left: 24px;
-  margin-right: auto;
+  max-width: calc(100% - 48px);
+  width: auto;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .back-button:hover {
@@ -58,6 +61,8 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .area-icon-large {
@@ -111,12 +116,15 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 100%;
 }
 
 /* Status Section */
@@ -346,6 +354,7 @@
 .recommendations-grid {
   display: grid;
   gap: 20px;
+  width: 100%;
 }
 
 /* Sidebar */
@@ -353,6 +362,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
 }
 
 .tips-card,
@@ -441,20 +451,66 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .area-detail-content {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 40px 20px;
+  .area-detail-header {
+    padding: 32px 0;
+    width: 100%;
   }
 
   .area-hero {
     flex-direction: column;
     text-align: center;
     gap: 16px;
+    width: 100%;
+    max-width: none;
+    padding: 0 20px;
+  }
+
+  .back-button {
+    margin: 0 20px 30px 20px;
+    max-width: calc(100% - 40px);
+    width: auto;
+  }
+
+  .area-detail-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 20px;
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Ensure all sections use full available width without overflow */
+  .status-section,
+  .goals-section,
+  .recommendations-section,
+  .tips-card,
+  .history-card,
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* Ensure grids use full width without overflow */
+  .recommendations-grid,
+  .status-grid {
+    width: 100%;
+    max-width: none;
+    overflow-x: hidden;
+  }
+
+  /* Fix any potential text or content overflow */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .area-info h1 {
     font-size: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .status-grid {
@@ -472,38 +528,71 @@
     flex-direction: column;
     gap: 8px;
   }
-
-  .back-button {
-    margin-left: 20px;
-  }
 }
 
 @media (max-width: 480px) {
   .area-detail-header {
     padding: 30px 0;
+    width: 100%;
   }
 
   .area-hero {
-    padding: 0 20px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .back-button {
+    margin: 0 16px 24px 16px;
+    max-width: calc(100% - 32px);
+    width: auto;
   }
 
   .area-info h1 {
     font-size: 1.8rem;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
+  .area-detail-content {
+    padding: 32px 16px;
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Ensure all content sections use full width on small screens without overflow */
   .status-section,
   .goals-section,
   .recommendations-section,
   .tips-card,
   .history-card {
     padding: 20px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
-  .area-detail-content {
-    padding: 32px 16px;
+  /* Make sure grid items and containers don't have max-width constraints or cause overflow */
+  .main-content,
+  .sidebar,
+  .recommendations-grid,
+  .status-grid,
+  .area-hero,
+  .area-info {
+    width: 100%;
+    max-width: none;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
-  .back-button {
-    margin-left: 16px;
+  /* Ensure progress bars and other components fit properly */
+  .progress-bar-container,
+  .progress-bar {
+    width: 100%;
+    max-width: none;
+    overflow: visible;
   }
 }

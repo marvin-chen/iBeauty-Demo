@@ -1,6 +1,9 @@
 .progress-bar-container {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .progress-label {
@@ -24,12 +27,14 @@
 
 .progress-bar {
   width: 100%;
+  max-width: 100%;
   height: var(--progress-height);
   background-color: var(--progress-bg);
   border-radius: var(--progress-radius);
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .progress-fill {
@@ -150,8 +155,31 @@
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .progress-bar-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .progress-label {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 @media (max-width: 480px) {
   .progress-indicators {
     display: none;
+  }
+  
+  .progress-bar-container {
+    overflow: visible;
   }
 }
