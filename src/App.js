@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/AIBot/Header/Header';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import BackToTop from './components/BackToTop/BackToTop';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AreaDetail from './pages/AreaDetail/AreaDetail';
 import About from './pages/About/About';
@@ -11,6 +13,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <ScrollToTop />
         <Header />
         <main className="main-content">
           <Routes>
@@ -20,6 +23,7 @@ function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
+        <BackToTop />
       </div>
     </Router>
   );

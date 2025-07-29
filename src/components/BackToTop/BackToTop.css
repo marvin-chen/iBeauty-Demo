@@ -1,0 +1,71 @@
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #D4AF37;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.back-to-top:hover {
+  background: #B8941F;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+}
+
+.back-to-top:active {
+  transform: translateY(-1px);
+}
+
+.back-to-top svg {
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  transform-origin: center;
+  max-width: none !important;
+  max-height: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  flex-shrink: 0;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .back-to-top svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* Accessibility */
+.back-to-top:focus {
+  outline: 2px solid #B8941F;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
