@@ -73,6 +73,27 @@ const mockSkinData = {
         progress: 65, 
         previousScore: 22,
         lastAnalyzed: new Date().toISOString()
+      },
+      dark_circles: {
+        currentScore: 32,
+        goal: 22,
+        progress: 50,
+        previousScore: 38,
+        lastAnalyzed: new Date().toISOString()
+      },
+      under_eye_bags: {
+        currentScore: 18,
+        goal: 12,
+        progress: 70,
+        previousScore: 25,
+        lastAnalyzed: new Date().toISOString()
+      },
+      nasolabial_folds: {
+        currentScore: 42,
+        goal: 30,
+        progress: 40,
+        previousScore: 48,
+        lastAnalyzed: new Date().toISOString()
       }
     },
     rewards: {

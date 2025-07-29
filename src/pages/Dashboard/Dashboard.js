@@ -36,7 +36,6 @@ function Dashboard() {
   };
 
   const handleNewAnalysis = () => {
-    console.log('🔬 Handle New Analysis - Starting AI Bot');
     setShowAIAnalyzing(true);
     // Store previous data for comparison
     if (skinData) {
@@ -45,7 +44,6 @@ function Dashboard() {
   };
 
   const handleAIComplete = () => {
-    console.log('✅ AI Analysis Complete');
     setShowAIAnalyzing(false);
     setShowAnalysisComplete(true);
     // Simulate new analysis results and show changes
@@ -62,9 +60,7 @@ function Dashboard() {
   };
 
   const handleGetAIRecommendations = () => {
-    console.log('🎯 Get AI Recommendations button clicked');
     setShowAIRecommendations(true);
-    console.log('🎯 setShowAIRecommendations(true) called');
   };
 
   const showAnalysisComparison = (previousData) => {
@@ -202,15 +198,11 @@ function Dashboard() {
   const healthInfo = getHealthCategory(overallScore);
   const improvementCount = getImprovementCount();
 
-  // Debug log for AIBot state
-  console.log('🤖 Dashboard Render - showAIAnalyzing:', showAIAnalyzing);
-  console.log('🎯 Dashboard Render - showAIRecommendations:', showAIRecommendations);
-
   return (
     <div className="dashboard">
       {showAIAnalyzing && (
         <AIBot 
-          message="🔬 L'Oréal AI is analyzing your skin across all eight concern areas. Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
+          message="🔬 L'Oréal AI is analyzing your skin across all key concern areas. Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
           isActive={true}
           type="analyzing"
           duration={3000}
@@ -240,7 +232,7 @@ function Dashboard() {
           <div className="welcome-section">
             <h1>Your Skin Health Dashboard</h1>
             <p className="subtitle">
-              Track your progress across 8 key skin concern areas with AI-powered insights
+              Track your progress across key skin concern areas with AI-powered insights
             </p>
           </div>
 
@@ -340,13 +332,10 @@ function Dashboard() {
       </div>
 
       {showAIRecommendations && skinData && (
-        <>
-          {console.log('🎯 Showing AIRecommendations component')}
-          <AIRecommendations 
-            skinData={skinData} 
-            className="dashboard-ai-recommendations"
-          />
-        </>
+        <AIRecommendations 
+          skinData={skinData} 
+          className="dashboard-ai-recommendations"
+        />
       )}
 
       <SkinAreasGrid 

@@ -49,6 +49,24 @@ class AIService {
         ingredients: ['hydroquinone', 'arbutin', 'vitamin_c', 'licorice_root'],
         routine: ['gentle_cleanser', 'brightening_treatment', 'hydrating_serum', 'spf_50'],
         tips: ['Start treatment early', 'Be consistent with routine', 'Never skip sunscreen']
+      },
+      dark_circles: {
+        causes: ['genetics', 'lack_of_sleep', 'aging', 'allergies'],
+        ingredients: ['caffeine', 'vitamin_k', 'peptides', 'retinol'],
+        routine: ['gentle_eye_cleanser', 'caffeine_eye_cream', 'hydrating_eye_serum', 'concealer_if_needed'],
+        tips: ['Get adequate sleep', 'Use cold compress', 'Stay hydrated', 'Manage allergies']
+      },
+      under_eye_bags: {
+        causes: ['fluid_retention', 'aging', 'genetics', 'salt_intake'],
+        ingredients: ['caffeine', 'peptides', 'hyaluronic_acid', 'vitamin_c'],
+        routine: ['gentle_cleanser', 'depuffing_eye_cream', 'lymphatic_massage', 'cooling_eye_mask'],
+        tips: ['Sleep with head elevated', 'Reduce salt intake', 'Use cold compress', 'Gentle eye massage']
+      },
+      nasolabial_folds: {
+        causes: ['aging', 'volume_loss', 'repetitive_expressions', 'sun_damage'],
+        ingredients: ['peptides', 'hyaluronic_acid', 'retinol', 'collagen_boosters'],
+        routine: ['hydrating_cleanser', 'peptide_complex', 'plumping_moisturizer', 'anti_aging_sunscreen'],
+        tips: ['Stay hydrated', 'Use anti-aging ingredients', 'Consider facial massage', 'Protect from sun']
       }
     };
   }

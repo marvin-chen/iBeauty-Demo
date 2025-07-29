@@ -5,9 +5,6 @@ import { SKIN_AREAS } from '../../utils/skinAreas';
 import './AIRecommendations.css';
 
 function AIRecommendations({ skinData, className = '' }) {
-  console.log('🎯 AIRecommendations component mounted with skinData:', !!skinData);
-  console.log('🎯 AIRecommendations className:', className);
-  
   const [recommendations, setRecommendations] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,15 +13,12 @@ function AIRecommendations({ skinData, className = '' }) {
 
   const loadRecommendations = useCallback(async () => {
     try {
-      console.log('🔄 loadRecommendations starting with skinData:', !!skinData);
       setIsLoading(true);
       setError(null);
       const response = await getAIRecommendations(skinData);
-      console.log('✅ getAIRecommendations response:', response);
       
       // Process the response to get the right data structure
       const rawRecommendations = response.recommendations || response.data || response;
-      console.log('📊 Raw recommendations:', rawRecommendations);
       
       if (Array.isArray(rawRecommendations)) {
         // Convert array to object format expected by component
@@ -44,7 +38,6 @@ function AIRecommendations({ skinData, className = '' }) {
           }
         });
         
-        console.log('🔄 Processed recommendations:', processedData);
         setRecommendations(processedData);
       } else {
         // Already in object format
@@ -65,14 +58,11 @@ function AIRecommendations({ skinData, className = '' }) {
   }, [skinData, loadRecommendations]);
 
   const handleAreaClick = (area, rec) => {
-    console.log('🖱️ Area clicked:', area, rec);
     setSelectedArea({ area, rec });
     setShowModal(true);
-    console.log('🖱️ Modal state set - showModal: true, selectedArea:', { area, rec });
   };
 
   const closeModal = () => {
-    console.log('❌ Closing modal');
     setShowModal(false);
     setSelectedArea(null);
   };
@@ -137,35 +127,11 @@ function AIRecommendations({ skinData, className = '' }) {
   }
 
   if (!recommendations) {
-    console.log('🚨 AIRecommendations returning null - no recommendations data');
-    console.log('🚨 isLoading:', isLoading, 'error:', error, 'recommendations:', recommendations);
     return null;
   }
 
   return (
     <div className={`ai-recommendations ${className}`}>
-      {/* DEBUG: Highly visible element to confirm component is rendering */}
-      <div style={{
-        position: 'fixed',
-        top: '50px',
-        right: '20px',
-        background: 'red',
-        color: 'white',
-        padding: '20px',
-        zIndex: 9999,
-        fontSize: '16px',
-        fontWeight: 'bold',
-        border: '3px solid yellow'
-      }}>
-        🎯 AIRecommendations Component IS RENDERING!
-        <br/>
-        Recommendations: {recommendations ? 'YES' : 'NO'}
-        <br/>
-        Loading: {isLoading ? 'YES' : 'NO'}
-        <br/>
-        Error: {error ? 'YES' : 'NO'}
-      </div>
-      
       <div className="ai-header">
         <h3>
           <span className="ai-icon">
@@ -235,9 +201,7 @@ function AIRecommendations({ skinData, className = '' }) {
         <h4>Area-Specific Guidance</h4>
         
         <div className="areas-grid">
-          {console.log('🏷️ Rendering areas from recommendations.recommendations:', Object.keys(recommendations.recommendations || {}))}
           {recommendations && Object.entries(recommendations.recommendations).map(([area, rec]) => {
-            console.log('🏷️ Processing area:', area, 'with rec:', rec);
             if (!rec || !rec.severity || !rec.priority) {
               console.warn(`Invalid recommendation data for area: ${area}`, rec);
               return null;
@@ -269,27 +233,8 @@ function AIRecommendations({ skinData, className = '' }) {
       </div>
 
       {/* Modal for detailed view */}
-      {console.log('🔍 Modal render check - showModal:', showModal, 'selectedArea:', selectedArea)}
       {showModal && selectedArea && (
         <div className="area-details-modal" onClick={closeModal}>
-          {/* DEBUG: Highly visible modal indicator */}
-          <div style={{
-            position: 'fixed',
-            top: '100px',
-            left: '20px',
-            background: 'blue',
-            color: 'white',
-            padding: '15px',
-            zIndex: 99999,
-            fontSize: '14px',
-            fontWeight: 'bold',
-            border: '3px solid cyan'
-          }}>
-            🔵 MODAL IS RENDERING!<br/>
-            Area: {selectedArea.area}<br/>
-            ShowModal: {showModal ? 'TRUE' : 'FALSE'}
-          </div>
-          
           <div className="area-details-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>
               <i className="fas fa-times"></i>
