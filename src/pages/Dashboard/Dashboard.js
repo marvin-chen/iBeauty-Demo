@@ -198,7 +198,7 @@ function Dashboard() {
     <div className="dashboard">
       {showAIAnalyzing && (
         <AIBot 
-          message="🔬 L'Oréal AI is analyzing your skin across all 8 concern areas... Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
+          message="🔬 L'Oréal AI is analyzing your skin across all eight concern areas. Calculating personalized improvement goals based on your unique skin profile and our advanced dermatological database..."
           isActive={true}
           type="analyzing"
           duration={3000}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ProgressBar from '../../ProgressBar/ProgressBar';
-import ProductRecommendation from '../../ProductRecommendation/ProductRecommendation';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import ProductRecommendation from '../../components/ProductRecommendation/ProductRecommendation';
 import AIBot from '../../components/AIBot/AIBot/AIBot';
 import { getAreaById, calculateProgress, getScoreCategory, generateAIGoal } from '../../utils/skinAreas';
 import { getUserSkinStats, getProductRecommendations } from '../../services/api';

@@ -76,9 +76,15 @@ ibeauty-demo/
 ├── src/                       # React application source
 │   ├── components/            # Reusable UI components
 │   │   ├── AIBot/            # Professional AI analysis animations
-│   │   │   ├── AIBot.js      # Flowing circular animation with L'Oréal badge
-│   │   │   └── AIBot.css     # Professional animation styling
+│   │   │   ├── AIBot/        # Flowing circular animation with L'Oréal badge
+│   │   │   ├── Header/       # Application header component
+│   │   │   └── SkinAreasGrid/ # Skin areas grid layout
 │   │   ├── AIRecommendations/ # AI insights display
+│   │   ├── BackToTop/        # Floating back-to-top button
+│   │   ├── ProductRecommendation/ # Product recommendation cards
+│   │   ├── ProgressBar/      # Progress visualization component
+│   │   ├── ScrollToTop/      # Auto scroll to top functionality
+│   │   └── SkinAreaCard/     # Individual skin area cards
 │   ├── pages/                # Application pages
 │   │   ├── Dashboard/        # Main dashboard with enhanced animations
 │   │   ├── AreaDetail/       # Individual skin area analysis
@@ -86,8 +92,6 @@ ibeauty-demo/
 │   │   └── Rewards/         # User rewards and points system
 │   ├── services/            
 │   │   └── api.js           # Complete API service with fallback system
-│   ├── context/             # React context providers
-│   ├── hooks/               # Custom React hooks
 │   ├── utils/               # Helper functions and skin area definitions
 │   └── styles/              # Global styling and L'Oréal theme variables
 ├── api/                     # Vercel serverless functions (fallback ready)

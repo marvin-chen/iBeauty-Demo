@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SkinAreaCard from '../../../SkinAreaCard/SkinAreaCard';
+import SkinAreaCard from '../../SkinAreaCard/SkinAreaCard';
 import { SKIN_AREAS } from '../../../utils/skinAreas';
 import './SkinAreasGrid.css';
 

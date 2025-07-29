@@ -1,7 +1,7 @@
 import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
-import { calculateProgress, getScoreCategory } from '../utils/skinAreas';
-import { formatScore } from '../utils/helpers';
+import { calculateProgress, getScoreCategory } from '../../utils/skinAreas';
+import { formatScore } from '../../utils/helpers';
 import './SkinAreaCard.css';
 
 function SkinAreaCard({ area, data, showProgress = false, className = '' }) {
