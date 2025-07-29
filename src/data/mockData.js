@@ -176,7 +176,7 @@ export const AI_RECOMMENDATIONS = {
   recommendations: [
     {
       area: 'wrinkles_fine_lines',
-      severity: 'moderate',
+      severity: 'significant',
       priority: 'high',
       primaryIngredients: ['retinol', 'peptides', 'hyaluronic_acid'],
       recommendation: 'Focus on retinol-based treatments and incorporate peptide serums for comprehensive anti-aging benefits.',
@@ -200,7 +200,7 @@ export const AI_RECOMMENDATIONS = {
     },
     {
       area: 'enlarged_pores',
-      severity: 'moderate',
+      severity: 'significant',
       priority: 'medium',
       primaryIngredients: ['niacinamide', 'salicylic_acid', 'zinc'],
       recommendation: 'Regular use of BHA and niacinamide will help minimize pore appearance over time.',
@@ -225,7 +225,7 @@ export const AI_RECOMMENDATIONS = {
     {
       area: 'texture',
       severity: 'moderate',
-      priority: 'high',
+      priority: 'medium',
       primaryIngredients: ['glycolic_acid', 'lactic_acid', 'urea'],
       recommendation: 'Gentle chemical exfoliation 2-3 times per week will smooth skin texture effectively.',
       timeframe: '3-5 weeks',
@@ -284,7 +284,7 @@ export const AI_RECOMMENDATIONS = {
     },
     {
       area: 'nasolabial_folds',
-      severity: 'moderate',
+      severity: 'significant',
       priority: 'medium',
       primaryIngredients: ['peptides', 'hyaluronic_acid', 'collagen_boosters'],
       recommendation: 'Hydrating treatments and collagen-stimulating ingredients will help improve fold appearance.',
