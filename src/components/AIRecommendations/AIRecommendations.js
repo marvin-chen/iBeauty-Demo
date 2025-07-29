@@ -16,12 +16,15 @@ function AIRecommendations({ skinData, className = '' }) {
 
   const loadRecommendations = useCallback(async () => {
     try {
+      console.log('🔄 loadRecommendations starting with skinData:', !!skinData);
       setIsLoading(true);
       setError(null);
       const response = await getAIRecommendations(skinData);
+      console.log('✅ getAIRecommendations response:', response);
       setRecommendations(response.data);
+      console.log('✅ setRecommendations called with:', response.data);
     } catch (err) {
-      console.error('Failed to load AI recommendations:', err);
+      console.error('❌ Failed to load AI recommendations:', err);
       setError('Failed to load personalized recommendations');
     } finally {
       setIsLoading(false);
@@ -103,7 +106,11 @@ function AIRecommendations({ skinData, className = '' }) {
     );
   }
 
-  if (!recommendations) return null;
+  if (!recommendations) {
+    console.log('🚨 AIRecommendations returning null - no recommendations data');
+    console.log('🚨 isLoading:', isLoading, 'error:', error, 'recommendations:', recommendations);
+    return null;
+  }
 
   return (
     <div className={`ai-recommendations ${className}`}>
