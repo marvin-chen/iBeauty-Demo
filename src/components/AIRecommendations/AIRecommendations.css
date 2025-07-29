@@ -450,6 +450,11 @@
   padding: 24px;
 }
 
+.modal-content .severity-section {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+}
+
 .modal-content .detail-section {
   margin-bottom: 24px;
   padding-bottom: 20px;

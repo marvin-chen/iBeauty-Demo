@@ -192,9 +192,6 @@ function AIRecommendations({ skinData, className = '' }) {
                     >
                       {rec.severity}
                     </span>
-                    <span className="priority-badge">
-                      {rec.priority}
-                    </span>
                     <span className="expand-icon">
                       <i className="fas fa-external-link-alt"></i>
                     </span>
@@ -216,20 +213,18 @@ function AIRecommendations({ skinData, className = '' }) {
             
             <div className="modal-header">
               <h4>{getAreaDisplayName(selectedArea.area)}</h4>
-              <div className="modal-badges">
+            </div>
+
+            <div className="modal-content">
+              <div className="severity-section">
                 <span 
                   className="severity-badge"
                   style={{ backgroundColor: getSeverityColor(selectedArea.rec.severity) }}
                 >
                   {selectedArea.rec.severity}
                 </span>
-                <span className="priority-badge">
-                  {selectedArea.rec.priority}
-                </span>
               </div>
-            </div>
-
-            <div className="modal-content">
+              
               <div className="detail-section">
                 <h6>
                   <i className="fas fa-flask"></i>
