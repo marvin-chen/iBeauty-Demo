@@ -36,6 +36,7 @@ function Dashboard() {
   };
 
   const handleNewAnalysis = () => {
+    console.log('🔬 Handle New Analysis - Starting AI Bot');
     setShowAIAnalyzing(true);
     // Store previous data for comparison
     if (skinData) {
@@ -44,6 +45,7 @@ function Dashboard() {
   };
 
   const handleAIComplete = () => {
+    console.log('✅ AI Analysis Complete');
     setShowAIAnalyzing(false);
     setShowAnalysisComplete(true);
     // Simulate new analysis results and show changes
@@ -193,6 +195,9 @@ function Dashboard() {
   const overallScore = getOverallHealthScore();
   const healthInfo = getHealthCategory(overallScore);
   const improvementCount = getImprovementCount();
+
+  // Debug log for AIBot state
+  console.log('🤖 Dashboard Render - showAIAnalyzing:', showAIAnalyzing);
 
   return (
     <div className="dashboard">

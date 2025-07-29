@@ -12,6 +12,7 @@ function AIBot({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    console.log('🤖 AIBot useEffect - isActive:', isActive, 'type:', type);
     if (isActive) {
       setIsVisible(true);
 
@@ -37,9 +38,11 @@ function AIBot({
     } else {
       setIsVisible(false);
     }
-  }, [isActive, message, duration, onComplete]);
+  }, [isActive, message, duration, onComplete, type]);
 
   if (!isVisible) return null;
+
+  console.log('🤖 AIBot Rendering - isVisible:', isVisible, 'type:', type);
 
   return (
     <>

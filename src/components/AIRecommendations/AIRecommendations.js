@@ -171,6 +171,7 @@ function AIRecommendations({ skinData, className = '' }) {
       {/* Area-Specific Recommendations */}
       <div className="area-recommendations">
         <h4>Area-Specific Guidance</h4>
+        
         <div className="areas-grid">
           {recommendations && Object.entries(recommendations.recommendations).map(([area, rec]) => {
             if (!rec || !rec.severity || !rec.priority) {
