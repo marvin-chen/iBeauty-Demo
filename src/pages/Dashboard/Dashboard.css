@@ -1195,30 +1195,29 @@
   animation: fadeInBot 0.3s ease-out;
 }
 
-.analysis-complete-popup .close-button {
+.analysis-complete-popup .close-btn {
   position: absolute;
-  top: -15px;
-  right: -15px;
-  width: 36px;
-  height: 36px;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
   border: none;
-  background: #ff4757;
-  color: white;
-  border-radius: 50%;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+  font-size: 18px;
   transition: all 0.2s ease;
+  border-radius: 4px;
 }
 
-.analysis-complete-popup .close-button:hover {
-  background: #ff3742;
+.analysis-complete-popup .close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8);
   transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(255, 71, 87, 0.4);
 }
 
 .completion-content {
