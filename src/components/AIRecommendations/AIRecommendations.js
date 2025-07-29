@@ -6,6 +6,7 @@ import './AIRecommendations.css';
 
 function AIRecommendations({ skinData, className = '' }) {
   console.log('🎯 AIRecommendations component mounted with skinData:', !!skinData);
+  console.log('🎯 AIRecommendations className:', className);
   
   const [recommendations, setRecommendations] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -106,6 +107,28 @@ function AIRecommendations({ skinData, className = '' }) {
 
   return (
     <div className={`ai-recommendations ${className}`}>
+      {/* DEBUG: Highly visible element to confirm component is rendering */}
+      <div style={{
+        position: 'fixed',
+        top: '50px',
+        right: '20px',
+        background: 'red',
+        color: 'white',
+        padding: '20px',
+        zIndex: 9999,
+        fontSize: '16px',
+        fontWeight: 'bold',
+        border: '3px solid yellow'
+      }}>
+        🎯 AIRecommendations Component IS RENDERING!
+        <br/>
+        Recommendations: {recommendations ? 'YES' : 'NO'}
+        <br/>
+        Loading: {isLoading ? 'YES' : 'NO'}
+        <br/>
+        Error: {error ? 'YES' : 'NO'}
+      </div>
+      
       <div className="ai-header">
         <h3>
           <span className="ai-icon">
