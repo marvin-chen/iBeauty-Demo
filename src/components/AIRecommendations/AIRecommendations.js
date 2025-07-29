@@ -21,8 +21,35 @@ function AIRecommendations({ skinData, className = '' }) {
       setError(null);
       const response = await getAIRecommendations(skinData);
       console.log('✅ getAIRecommendations response:', response);
-      setRecommendations(response.data);
-      console.log('✅ setRecommendations called with:', response.data);
+      
+      // Process the response to get the right data structure
+      const rawRecommendations = response.recommendations || response.data || response;
+      console.log('📊 Raw recommendations:', rawRecommendations);
+      
+      if (Array.isArray(rawRecommendations)) {
+        // Convert array to object format expected by component
+        const processedData = {
+          recommendations: {},
+          confidence: 0.95,
+          consolidatedRoutine: {
+            morning: ["cleanse", "serum", "moisturizer", "spf"],
+            evening: ["cleanse", "treatment", "moisturizer", "night_cream"]
+          }
+        };
+        
+        // Convert array to object with area as key
+        rawRecommendations.forEach(rec => {
+          if (rec.area) {
+            processedData.recommendations[rec.area] = rec;
+          }
+        });
+        
+        console.log('🔄 Processed recommendations:', processedData);
+        setRecommendations(processedData);
+      } else {
+        // Already in object format
+        setRecommendations(rawRecommendations);
+      }
     } catch (err) {
       console.error('❌ Failed to load AI recommendations:', err);
       setError('Failed to load personalized recommendations');
