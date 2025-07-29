@@ -328,13 +328,44 @@ function AIRecommendations({ skinData, className = '' }) {
                   <i className="fas fa-route"></i>
                   Recommended Routine
                 </h6>
-                <ol>
-                  {selectedArea.rec.routine && selectedArea.rec.routine.map((step, index) => (
-                    <li key={`${selectedArea.area}-routine-${index}`}>
-                      {step.replace(/_/g, ' ')}
-                    </li>
-                  ))}
-                </ol>
+                {selectedArea.rec.routine && typeof selectedArea.rec.routine === 'object' ? (
+                  <div className="routine-breakdown">
+                    {selectedArea.rec.routine.morning && (
+                      <div className="routine-time">
+                        <strong>Morning:</strong>
+                        <ol>
+                          {selectedArea.rec.routine.morning.map((step, index) => (
+                            <li key={`${selectedArea.area}-morning-${index}`}>
+                              {step.replace(/_/g, ' ')}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+                    {selectedArea.rec.routine.evening && (
+                      <div className="routine-time">
+                        <strong>Evening:</strong>
+                        <ol>
+                          {selectedArea.rec.routine.evening.map((step, index) => (
+                            <li key={`${selectedArea.area}-evening-${index}`}>
+                              {step.replace(/_/g, ' ')}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+                  </div>
+                ) : selectedArea.rec.routine && Array.isArray(selectedArea.rec.routine) ? (
+                  <ol>
+                    {selectedArea.rec.routine.map((step, index) => (
+                      <li key={`${selectedArea.area}-routine-${index}`}>
+                        {step.replace(/_/g, ' ')}
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>No routine information available</p>
+                )}
               </div>
 
               <div className="detail-section">
