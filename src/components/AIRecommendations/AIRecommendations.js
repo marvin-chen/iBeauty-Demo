@@ -65,11 +65,14 @@ function AIRecommendations({ skinData, className = '' }) {
   }, [skinData, loadRecommendations]);
 
   const handleAreaClick = (area, rec) => {
+    console.log('🖱️ Area clicked:', area, rec);
     setSelectedArea({ area, rec });
     setShowModal(true);
+    console.log('🖱️ Modal state set - showModal: true, selectedArea:', { area, rec });
   };
 
   const closeModal = () => {
+    console.log('❌ Closing modal');
     setShowModal(false);
     setSelectedArea(null);
   };
@@ -232,7 +235,9 @@ function AIRecommendations({ skinData, className = '' }) {
         <h4>Area-Specific Guidance</h4>
         
         <div className="areas-grid">
+          {console.log('🏷️ Rendering areas from recommendations.recommendations:', Object.keys(recommendations.recommendations || {}))}
           {recommendations && Object.entries(recommendations.recommendations).map(([area, rec]) => {
+            console.log('🏷️ Processing area:', area, 'with rec:', rec);
             if (!rec || !rec.severity || !rec.priority) {
               console.warn(`Invalid recommendation data for area: ${area}`, rec);
               return null;
@@ -264,8 +269,27 @@ function AIRecommendations({ skinData, className = '' }) {
       </div>
 
       {/* Modal for detailed view */}
+      {console.log('🔍 Modal render check - showModal:', showModal, 'selectedArea:', selectedArea)}
       {showModal && selectedArea && (
         <div className="area-details-modal" onClick={closeModal}>
+          {/* DEBUG: Highly visible modal indicator */}
+          <div style={{
+            position: 'fixed',
+            top: '100px',
+            left: '20px',
+            background: 'blue',
+            color: 'white',
+            padding: '15px',
+            zIndex: 99999,
+            fontSize: '14px',
+            fontWeight: 'bold',
+            border: '3px solid cyan'
+          }}>
+            🔵 MODAL IS RENDERING!<br/>
+            Area: {selectedArea.area}<br/>
+            ShowModal: {showModal ? 'TRUE' : 'FALSE'}
+          </div>
+          
           <div className="area-details-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>
               <i className="fas fa-times"></i>
