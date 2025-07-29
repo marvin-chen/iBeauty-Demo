@@ -213,7 +213,7 @@ function Dashboard() {
       {showAnalysisComplete && (
         <div className="ai-analysis-overlay">
           <div className="analysis-complete-popup">
-            <button className="close-button" onClick={handleCloseAnalysisComplete} title="Close">
+            <button className="close-btn" onClick={handleCloseAnalysisComplete} title="Close">
               <i className="fas fa-times"></i>
             </button>
             <div className="completion-content">
