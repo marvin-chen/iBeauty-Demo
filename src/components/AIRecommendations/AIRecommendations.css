@@ -3,8 +3,8 @@
   background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
   border: 2px solid #000000;
   border-radius: 8px;
-  padding: 32px;
-  margin: 24px 0;
+  padding: 24px;
+  margin: 20px 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   font-family: var(--font-secondary);
   position: relative;
@@ -25,8 +25,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
-  padding-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #EEEEEE;
 }
 
@@ -320,7 +320,7 @@
 
 /* Area Recommendations */
 .area-recommendations {
-  margin-top: 32px;
+  margin-top: 20px;
 }
 
 .area-recommendations h4 {
@@ -335,10 +335,10 @@
 
 .areas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
   max-width: 100%;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 /* Modal overlay for expanded content */
@@ -484,10 +484,10 @@
 
 .areas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
   max-width: 100%;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .area-rec-card {
@@ -512,9 +512,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
+  padding: 14px 18px;
   background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-  min-height: 70px;
+  min-height: 55px;
   transition: background 0.2s ease;
 }
 
@@ -551,17 +551,17 @@
   color: #000000;
   font-family: var(--font-primary);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   flex: 1;
   min-width: 0;
-  margin-right: 12px;
+  margin-right: 10px;
   line-height: 1.2;
 }
 
 .area-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: nowrap;
   justify-content: flex-end;
   flex-shrink: 0;
@@ -608,12 +608,12 @@
 }
 
 .area-details {
-  padding: 24px;
+  padding: 18px;
   background: #FFFFFF;
 }
 
 .detail-section {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .detail-section:last-child {
