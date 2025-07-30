@@ -608,3 +608,148 @@
     gap: 2px;
   }
 }
+
+/* Project Information Section */
+.project-info {
+  border-top: 3px solid #D4AF37;
+  margin-top: 80px;
+  margin-bottom: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 0;
+}
+
+.project-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.project-header h3 {
+  font-family: var(--font-primary);
+  font-size: 1.75rem;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+}
+
+.project-badge {
+  background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.project-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #495057;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+
+.meta-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #495057;
+  margin-right: 12px;
+  min-width: 100px;
+  font-size: 0.95rem;
+}
+
+.meta-value {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.github-link:hover {
+  color: #D4AF37;
+  text-decoration: none;
+}
+
+.github-link i {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.github-link:hover i {
+  transform: scale(1.1);
+}
+
+/* Mobile Responsiveness for Project Section */
+@media (max-width: 768px) {
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .project-meta {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .meta-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .meta-label {
+    min-width: auto;
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+
+  .project-description {
+    font-size: 1rem;
+    text-align: left;
+  }
+}

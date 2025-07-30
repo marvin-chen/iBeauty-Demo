@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fs = require('fs-extra');
-const path = require('path');
+// const fs = require('fs-extra');
+// const path = require('path');
 const aiService = require('./services/aiService');
 
 const app = express();

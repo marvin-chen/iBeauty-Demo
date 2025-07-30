@@ -216,6 +216,47 @@ function About() {
             </ul>
           </div>
         </section>
+
+        {/* Project Information */}
+        <section className="about-section project-info">
+          <div className="project-content">
+            <div className="project-header">
+              <h3>Project Information</h3>
+            </div>
+            <div className="project-details">
+              <p className="project-description">
+                This iBeauty extension was developed as part of a summer intern innovation project, 
+                showcasing the potential of integrating AI technology with personalized skincare solutions. 
+              </p>
+              <div className="project-meta">
+                <div className="meta-item">
+                  <span className="meta-label">Developer:</span>
+                  <span className="meta-value">Marvin Chen</span>
+                </div>
+                <div className="meta-item">
+                  <span className="meta-label">Department:</span>
+                  <span className="meta-value">Retail IT</span>
+                </div>
+                <div className="meta-item">
+                  <span className="meta-label">Project Period:</span>
+                  <span className="meta-value">Summer 2025</span>
+                </div>
+                <div className="meta-item">
+                  <span className="meta-label">Source Code:</span>
+                  <a 
+                    href="https://github.com/marvin-chen/iBeauty-Demo" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="github-link"
+                  >
+                    <i className="fab fa-github"></i>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
