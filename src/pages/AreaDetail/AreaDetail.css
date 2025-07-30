@@ -32,68 +32,44 @@
   padding: 0 24px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 .back-button {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 148, 31, 0.1) 100%);
+  position: absolute;
+  top: 6px;
+  left: 24px;
+  background: none;
   color: #D4AF37;
-  border: 2px solid #D4AF37;
-  padding: 8px;
-  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  font-family: var(--font-secondary);
-  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0 20px 0;
-  width: 40px;
-  height: 40px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.back-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  font-size: 28px;
+  font-weight: 900;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .back-button:hover {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(184, 148, 31, 0.2) 100%);
-  border-color: #B8941F;
-  color: #B8941F;
-  transform: translateX(-3px) scale(1.05);
-  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
-}
-
-.back-button:hover::before {
-  left: 100%;
-}
-
-.back-button:active {
-  transform: translateX(-2px) scale(1.02);
+  color: #FFFFFF;
+  transform: scale(1.1);
 }
 
 .back-arrow {
-  font-size: 1.1rem;
+  font-size: 28px;
   line-height: 1;
-  font-weight: bold;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 900;
+  -webkit-text-stroke: 1.5px #D4AF37;
 }
 
 .area-hero {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 60px 24px 0 24px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -492,30 +468,25 @@
     width: 100%;
   }
 
+  .back-button {
+    top: 6px;
+    left: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+  }
+
   .area-hero {
     flex-direction: column;
     text-align: center;
     gap: 16px;
     width: 100%;
     max-width: none;
-    padding: 0 20px;
+    padding: 50px 20px 0 20px;
   }
 
   .header-container {
     padding: 0 20px;
-  }
-
-  .back-button {
-    margin: 0 0 20px 0;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    font-size: 1rem;
-    border-width: 1.5px;
-  }
-
-  .back-arrow {
-    font-size: 1rem;
   }
 
   .area-detail-content {
@@ -583,27 +554,22 @@
     width: 100%;
   }
 
+  .back-button {
+    top: 4px;
+    left: 16px;
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+  }
+
   .area-hero {
-    padding: 0 16px;
+    padding: 45px 16px 0 16px;
     width: 100%;
     max-width: none;
   }
 
   .header-container {
     padding: 0 16px;
-  }
-
-  .back-button {
-    margin: 0 0 16px 0;
-    width: 34px;
-    height: 34px;
-    padding: 5px;
-    font-size: 0.9rem;
-    border-width: 1.5px;
-  }
-
-  .back-arrow {
-    font-size: 0.9rem;
   }
 
   .area-info h1 {
