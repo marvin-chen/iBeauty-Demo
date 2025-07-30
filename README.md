@@ -2,7 +2,6 @@
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![Vercel](https://img.shields.io/badge/Vercel-Deployed-black.svg)](https://vercel.com/)
-[![L'Oréal](https://img.shields.io/badge/L'Oréal-Branded-gold.svg)](#)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A **L'Oréal branded application** featuring professional AI-driven skin analysis with comprehensive skincare recommendations. This is a proof of concept to simulate a professional AI skin analysis platform.
