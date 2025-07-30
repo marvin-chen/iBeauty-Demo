@@ -110,7 +110,7 @@ ibeauty-demo/
 │   │   │   ├── AIBot/        # Flowing circular animation with L'Oréal badge
 │   │   │   ├── Header/       # Application header component
 │   │   │   └── SkinAreasGrid/ # Skin areas grid layout
-│   │   ├── AIRecommendations/ # AI insights display
+│   │   ├── AIRecommendations/ # AI insights display with modal system
 │   │   ├── BackToTop/        # Floating back-to-top button
 │   │   ├── ProductRecommendation/ # Product recommendation cards
 │   │   ├── ProgressBar/      # Progress visualization component
@@ -119,16 +119,46 @@ ibeauty-demo/
 │   ├── pages/                # Application pages
 │   │   ├── Dashboard/        # Main dashboard with enhanced animations
 │   │   ├── AreaDetail/       # Individual skin area analysis
-│   │   ├── About/           # Application information
+│   │   ├── About/           # Application information with project details
 │   │   └── Rewards/         # User rewards and points system
-│   ├── services/            
-│   │   └── api.js           # Complete API service with fallback system
-│   ├── utils/               # Helper functions and skin area definitions
-│   └── styles/              # Global styling and L'Oréal theme variables
-├── api/                     # Vercel serverless functions (fallback ready)
+│   ├── context/             # React context providers
+│   │   └── AppContext.js    # Global application state
+│   ├── data/                # Centralized data management
+│   │   └── mockData.js      # Single source of truth for all app data
+│   ├── services/            # API and external service integrations
+│   │   ├── api.js           # Complete API service with fallback system
+│   │   ├── api-clean.js     # Clean API implementation
+│   │   └── api-old.js       # Legacy API functions
+│   ├── utils/               # Helper functions and utilities
+│   │   ├── helpers.js       # General utility functions
+│   │   └── skinAreas.js     # Skin area definitions and calculations
+│   ├── styles/              # Global styling and L'Oréal theme variables
+│   │   ├── globals.css      # Global styles
+│   │   └── variables.css    # CSS custom properties
+│   ├── ProductRecommendation/ # Legacy component directory
+│   │   └── ProductRecommendation.css # Product styling
+│   ├── ProgressBar/         # Legacy component directory
+│   │   └── ProgressBar.css  # Progress bar styling
+│   ├── SkinAreaCard/        # Legacy component directory
+│   │   └── SkinAreaCard.js  # Legacy skin area component
+│   ├── App.js               # Main application component
+│   └── index.js             # Application entry point
+├── api/                     # Vercel serverless functions
+│   ├── ai-recommendations.js # AI analysis endpoint
+│   ├── skin-stats.js       # User skin statistics
+│   ├── ai/                 # AI-related endpoints
+│   ├── products/           # Product recommendation endpoints
+│   └── users/              # User-specific endpoints
 ├── backend/                 # Optional Express server for development
+│   ├── server.js           # Express server setup
+│   ├── config/             # Server configuration
+│   ├── data/               # Backend data files
+│   ├── middleware/         # Express middleware
+│   ├── models/             # Data models
+│   └── services/           # Backend services
 ├── build/                   # Production build output
 ├── vercel.json             # Vercel deployment configuration
+├── verify-data-consistency.js # Data validation script
 └── package.json            # Dependencies and scripts
 ```
 
