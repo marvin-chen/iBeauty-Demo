@@ -167,6 +167,12 @@
   margin-bottom: 8px;
 }
 
+.premium-status {
+  color: #FFD700;
+  font-weight: 600;
+  font-style: italic;
+}
+
 .progress-bar {
   width: 200px;
   height: 8px;
@@ -248,7 +254,8 @@
 }
 
 .tier-badge.bronze {
-  background-color: #CD7F32;
+  /* background-color: #CD7F32; */
+  background-color: #C0C0C0;
 }
 
 .tier-badge.silver {
@@ -256,7 +263,8 @@
 }
 
 .tier-badge.gold {
-  background-color: #D4AF37;
+  background-color: #FFD700;
+  color: #000000;
 }
 
 .tier-card p {

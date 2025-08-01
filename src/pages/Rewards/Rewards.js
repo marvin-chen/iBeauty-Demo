@@ -202,7 +202,7 @@ function Rewards() {
     const tiers = {
       Bronze: { color: '#CD7F32', nextTier: 'Silver', pointsNeeded: 500 },
       Silver: { color: '#C0C0C0', nextTier: 'Gold', pointsNeeded: 1000 },
-      Gold: { color: '#D4AF37', nextTier: null, pointsNeeded: 0 }
+      Gold: { color: '#FFD700', nextTier: null, pointsNeeded: 0 }
     };
     return tiers[tier] || tiers.Bronze;
   };
@@ -243,10 +243,13 @@ function Rewards() {
                 <div className="points-label">Loyalty Points</div>
               </div>
               <div className="tier-info">
-                <div className="tier-badge" style={{ backgroundColor: tierInfo.color }}>
+                <div className="tier-badge" style={{ 
+                  backgroundColor: tierInfo.color,
+                  color: userData?.membershipTier === 'Gold' ? '#000000' : '#FFFFFF'
+                }}>
                   {userData?.membershipTier} Member
                 </div>
-                {tierInfo.nextTier && (
+                {tierInfo.nextTier && tierProgress.pointsToNext > 0 && (
                   <div className="tier-progress">
                     <div className="tier-next">
                       {tierProgress.pointsToNext} points to {tierInfo.nextTier}
@@ -259,6 +262,13 @@ function Rewards() {
                           backgroundColor: tierInfo.color 
                         }}
                       ></div>
+                    </div>
+                  </div>
+                )}
+                {!tierInfo.nextTier && (
+                  <div className="tier-progress">
+                    <div className="tier-next premium-status">
+                      Maximum Tier Reached
                     </div>
                   </div>
                 )}
