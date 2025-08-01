@@ -272,9 +272,9 @@ function Rewards() {
                 )}
                 {userData?.membershipTier === 'Premium' && (
                   <div className="tier-progress">
-                    {/* <div className="tier-next premium-status">
+                    <div className="tier-next premium-status">
                       Just for Demo User
-                    </div> */}
+                    </div>
                   </div>
                 )}
               </div>
