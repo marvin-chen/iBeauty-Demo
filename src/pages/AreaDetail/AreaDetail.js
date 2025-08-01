@@ -6,11 +6,13 @@ import AIBot from '../../components/AIBot/AIBot/AIBot';
 import { getAreaById, calculateProgress, getScoreCategory, generateAIGoal } from '../../utils/skinAreas';
 import { getUserSkinStats, getProductRecommendations } from '../../services/api';
 import { formatScore, formatDate } from '../../utils/helpers';
+import { useDemoUser } from '../../context/DemoUserContext';
 import './AreaDetail.css';
 
 function AreaDetail() {
   const { areaId } = useParams();
   const navigate = useNavigate();
+  const { currentDemoUser } = useDemoUser();
   
   const [areaData, setAreaData] = useState(null);
   const [skinData, setSkinData] = useState(null);
@@ -20,11 +22,16 @@ function AreaDetail() {
   const [error, setError] = useState(null);
 
   const area = getAreaById(areaId);
-
   const loadAreaData = useCallback(async () => {
+    // Don't load data until we have a valid currentDemoUser
+    if (!currentDemoUser) {
+      console.log('⏳ Waiting for demo user context to initialize...');
+      return;
+    }
+    
     try {
       setIsLoading(true);
-      const data = await getUserSkinStats('user123');
+      const data = await getUserSkinStats(currentDemoUser);
       const fullData = data.data || data;
       setSkinData(fullData);
       setAreaData(fullData.areas?.[areaId]);
@@ -34,17 +41,22 @@ function AreaDetail() {
     } finally {
       setIsLoading(false);
     }
-  }, [areaId]);
+  }, [areaId, currentDemoUser]);
 
   const loadRecommendations = useCallback(async () => {
+    // Don't load recommendations until we have a valid currentDemoUser
+    if (!currentDemoUser) {
+      return;
+    }
+    
     try {
-      const data = await getProductRecommendations(areaId, 'user123');
+      const data = await getProductRecommendations(areaId, currentDemoUser);
       setProducts(data.products || []);
     } catch (error) {
       console.error('Error loading recommendations:', error);
       // Don't set error here, just log it
     }
-  }, [areaId]);
+  }, [areaId, currentDemoUser]);
 
   useEffect(() => {
     if (!area) {

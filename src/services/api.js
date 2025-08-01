@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SKIN_DATA, PRODUCTS_DATA, AI_RECOMMENDATIONS, REWARDS_DATA } from '../data/mockData.js';
+import { getDemoSkinData, DEMO_USERS } from '../data/demoDataHelper.js';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -66,6 +67,12 @@ api.interceptors.response.use(
 // User APIs with comprehensive fallbacks
 export const getUserSkinStats = async (userId) => {
   try {
+    // Check if this is a demo user from enhanced mock data
+    if (Object.values(DEMO_USERS).includes(userId)) {
+      console.log(`🎪 Loading demo data for user: ${userId}`);
+      return getDemoSkinData(userId);
+    }
+    
     // In production/deployment, always use fallback data
     if (process.env.NODE_ENV === 'production' || !API_BASE_URL.includes('localhost')) {
       return FALLBACK_SKIN_DATA;

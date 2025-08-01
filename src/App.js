@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { DemoUserProvider } from './context/DemoUserContext';
 import Header from './components/AIBot/Header/Header';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import BackToTop from './components/BackToTop/BackToTop';
@@ -11,21 +12,23 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <ScrollToTop />
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/area/:areaId" element={<AreaDetail />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-        <BackToTop />
-      </div>
-    </Router>
+    <DemoUserProvider>
+      <Router>
+        <div className="App">
+          <ScrollToTop />
+          <Header />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/area/:areaId" element={<AreaDetail />} />
+              <Route path="/rewards" element={<Rewards />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </main>
+          <BackToTop />
+        </div>
+      </Router>
+    </DemoUserProvider>
   );
 }
 

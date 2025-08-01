@@ -3,6 +3,8 @@ import SkinAreasGrid from '../../components/AIBot/SkinAreasGrid/SkinAreasGrid';
 import AIBot from '../../components/AIBot/AIBot/AIBot';
 import AIRecommendations from '../../components/AIRecommendations/AIRecommendations';
 import { getUserSkinStats } from '../../services/api';
+import { useDemoUser } from '../../context/DemoUserContext';
+import { saveUserGoals } from '../../data/demoDataHelper';
 import { timeAgo } from '../../utils/helpers';
 import './Dashboard.css';
 
@@ -16,16 +18,42 @@ function Dashboard() {
   const [showResultsModal, setShowResultsModal] = useState(false);
   const [analysisComparison, setAnalysisComparison] = useState(null);
   const [error, setError] = useState(null);
+  
+  // Use demo user context
+  const { currentDemoUser } = useDemoUser();
 
   useEffect(() => {
-    loadSkinData();
-  }, []);
+    const loadData = async () => {
+      // Don't load data until we have a valid currentDemoUser
+      if (!currentDemoUser) {
+        console.log('⏳ Waiting for demo user context to initialize...');
+        return;
+      }
+      
+      try {
+        setIsLoading(true);
+        setError(null);
+        console.log('📊 Loading data for user:', currentDemoUser);
+        const data = await getUserSkinStats(currentDemoUser);
+        console.log('📊 Received data:', data);
+        setSkinData(data.data || data);
+      } catch (error) {
+        console.error('Error loading skin data:', error);
+        setError('Failed to load skin analysis data. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadData();
+  }, [currentDemoUser]);
 
-  const loadSkinData = async () => {
+  // Re-sync currentDemoUser from localStorage on component mount and when returning from navigation
+  const loadSkinData = async (userId = currentDemoUser) => {
     try {
       setIsLoading(true);
       setError(null);
-      const data = await getUserSkinStats('user123'); // Mock user ID
+      const data = await getUserSkinStats(userId);
       setSkinData(data.data || data);
     } catch (error) {
       console.error('Error loading skin data:', error);
@@ -35,24 +63,72 @@ function Dashboard() {
     }
   };
 
-  const handleNewAnalysis = () => {
+  const handleNewAnalysis = async () => {
+    console.log('🚀 Starting new AI analysis...');
     setShowAIAnalyzing(true);
+    
     // Store previous data for comparison
     if (skinData) {
       localStorage.setItem('previousAnalysis', JSON.stringify(skinData));
     }
+    
+    // Let the AI animation run for 3 seconds, then complete
+    setTimeout(() => {
+      handleAIComplete();
+    }, 3500);
   };
 
-  const handleAIComplete = () => {
+    const handleAIComplete = () => {
+    console.log('🎯 AI analysis complete, generating goals...');
     setShowAIAnalyzing(false);
-    setShowAnalysisComplete(true);
-    // Simulate new analysis results and show changes
-    const previousData = JSON.parse(localStorage.getItem('previousAnalysis') || 'null');
-    loadSkinData().then(() => {
-      if (previousData) {
-        showAnalysisComparison(previousData);
-      }
-    });
+    
+    // Generate realistic goals based on current skin data
+    if (skinData?.areas) {
+      const generatedGoals = {};
+      Object.keys(skinData.areas).forEach(area => {
+        const current = skinData.areas[area].currentScore || 50;
+        const target = Math.max(5, Math.round(current * 0.75)); // 25% improvement goal
+        generatedGoals[area] = {
+          current,
+          target,
+          timeframe: '8-12 weeks',
+          priority: current > 40 ? 'high' : 'medium'
+        };
+      });
+      
+      const goalsGeneratedAt = new Date().toISOString();
+      
+      // Save goals to sessionStorage for persistence
+      saveUserGoals(currentDemoUser, generatedGoals, goalsGeneratedAt);
+      
+      // Update skin data with goals
+      const updatedAreas = { ...skinData.areas };
+      Object.keys(generatedGoals).forEach(areaId => {
+        if (updatedAreas[areaId]) {
+          updatedAreas[areaId] = {
+            ...updatedAreas[areaId],
+            goal: generatedGoals[areaId].target,
+            goalData: generatedGoals[areaId]
+          };
+        }
+      });
+      
+      const updatedSkinData = {
+        ...skinData,
+        areas: updatedAreas,
+        goals: generatedGoals,
+        aiGoalsGenerated: true,
+        goalsGeneratedAt
+      };
+      
+      setSkinData(updatedSkinData);
+      
+      // Show completion message
+      setShowAnalysisComplete(true);
+      setTimeout(() => {
+        setShowAnalysisComplete(false);
+      }, 2000);
+    }
   };
 
   const handleCloseAnalysisComplete = () => {
@@ -63,30 +139,6 @@ function Dashboard() {
     setShowAIRecommendations(true);
   };
 
-  const showAnalysisComparison = (previousData) => {
-    // Calculate changes between previous and current analysis
-    const changes = [];
-    Object.keys(skinData?.areas || {}).forEach(area => {
-      const currentScore = skinData.areas[area] || 0;
-      const previousScore = previousData.areas[area] || 0;
-      const difference = currentScore - previousScore;
-      
-      if (Math.abs(difference) > 1) {
-        changes.push({
-          area,
-          previous: previousScore,
-          current: currentScore,
-          change: difference,
-          improved: difference < 0
-        });
-      }
-    });
-    
-    if (changes.length > 0) {
-      setAnalysisComparison({ previous: previousData, current: skinData, changes });
-      setShowResultsModal(true);
-    }
-  };
 
   const handleCloseResults = () => {
     setShowResultsModal(false);

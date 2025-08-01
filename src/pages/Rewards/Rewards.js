@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDemoUser } from '../../context/DemoUserContext';
 import { SKIN_AREAS } from '../../utils/skinAreas';
 import './Rewards.css';
 
 function Rewards() {
+  const { currentDemoUser, getCurrentUserProfile } = useDemoUser();
   const [userData, setUserData] = useState(null);
   const [loyaltyPoints, setLoyaltyPoints] = useState(1250);
   const [milestones, setMilestones] = useState([]);
@@ -10,15 +12,28 @@ function Rewards() {
   const [skinGoals, setSkinGoals] = useState([]);
 
   useEffect(() => {
-    // Simulate loading user data and skin progress
+    // Load user data based on current demo user
     const loadUserData = () => {
-      setUserData({
-        name: "Demo User",
-        memberSince: "2024-01-15",
-        totalAnalyses: 12,
-        currentStreak: 7,
-        membershipTier: "Gold"
-      });
+      const profile = getCurrentUserProfile();
+      if (profile) {
+        setUserData({
+          name: profile.name,
+          memberSince: profile.joinDate,
+          totalAnalyses: 12,
+          currentStreak: 7,
+          membershipTier: profile.membershipLevel
+        });
+        setLoyaltyPoints(profile.currentPoints);
+      } else {
+        // Fallback to default
+        setUserData({
+          name: "Demo User",
+          memberSince: "2024-01-15",
+          totalAnalyses: 12,
+          currentStreak: 7,
+          membershipTier: "Gold"
+        });
+      }
     };
 
     const generateMilestones = () => {
@@ -165,7 +180,7 @@ function Rewards() {
     generateMilestones();
     generateRewards();
     generateSkinGoals();
-  }, [loyaltyPoints]);
+  }, [loyaltyPoints, getCurrentUserProfile, currentDemoUser]);
 
   const redeemReward = (rewardId) => {
     const reward = availableRewards.find(r => r.id === rewardId);
