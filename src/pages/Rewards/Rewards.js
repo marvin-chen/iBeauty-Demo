@@ -202,7 +202,8 @@ function Rewards() {
     const tiers = {
       Bronze: { color: '#CD7F32', nextTier: 'Silver', pointsNeeded: 500 },
       Silver: { color: '#C0C0C0', nextTier: 'Gold', pointsNeeded: 1000 },
-      Gold: { color: '#FFD700', nextTier: null, pointsNeeded: 0 }
+      Gold: { color: '#FFD700', nextTier: null, pointsNeeded: 0 },
+      Premium: { color: '#8A2BE2', nextTier: null, pointsNeeded: 0 } // Purple premium color
     };
     return tiers[tier] || tiers.Bronze;
   };
@@ -245,7 +246,7 @@ function Rewards() {
               <div className="tier-info">
                 <div className="tier-badge" style={{ 
                   backgroundColor: tierInfo.color,
-                  color: userData?.membershipTier === 'Gold' ? '#000000' : '#FFFFFF'
+                  color: (userData?.membershipTier === 'Gold') ? '#000000' : '#FFFFFF'
                 }}>
                   {userData?.membershipTier} Member
                 </div>
@@ -265,11 +266,15 @@ function Rewards() {
                     </div>
                   </div>
                 )}
-                {!tierInfo.nextTier && (
+                {!tierInfo.nextTier && userData?.membershipTier !== 'Premium' && (
                   <div className="tier-progress">
-                    <div className="tier-next premium-status">
-                      Maximum Tier Reached
-                    </div>
+                  </div>
+                )}
+                {userData?.membershipTier === 'Premium' && (
+                  <div className="tier-progress">
+                    {/* <div className="tier-next premium-status">
+                      Just for Demo User
+                    </div> */}
                   </div>
                 )}
               </div>

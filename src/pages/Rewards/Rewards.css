@@ -254,8 +254,7 @@
 }
 
 .tier-badge.bronze {
-  /* background-color: #CD7F32; */
-  background-color: #C0C0C0;
+  background-color: #CD7F32;
 }
 
 .tier-badge.silver {
@@ -265,6 +264,11 @@
 .tier-badge.gold {
   background-color: #FFD700;
   color: #000000;
+}
+
+.tier-badge.premium {
+  background-color: #8A2BE2;
+  color: #FFFFFF;
 }
 
 .tier-card p {
