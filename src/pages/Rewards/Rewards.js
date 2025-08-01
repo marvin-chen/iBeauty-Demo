@@ -202,13 +202,25 @@ function Rewards() {
     const tiers = {
       Bronze: { color: '#CD7F32', nextTier: 'Silver', pointsNeeded: 500 },
       Silver: { color: '#C0C0C0', nextTier: 'Gold', pointsNeeded: 1000 },
-      Gold: { color: '#D4AF37', nextTier: 'Platinum', pointsNeeded: 2000 },
-      Platinum: { color: '#E5E4E2', nextTier: null, pointsNeeded: 0 }
+      Gold: { color: '#D4AF37', nextTier: null, pointsNeeded: 0 }
     };
     return tiers[tier] || tiers.Bronze;
   };
 
+  const getTierProgress = (currentTier, currentPoints) => {
+    const tierInfo = getTierInfo(currentTier);
+    if (!tierInfo.nextTier) {
+      return { pointsToNext: 0, progress: 100 };
+    }
+    
+    const pointsToNext = tierInfo.pointsNeeded - currentPoints;
+    const progress = Math.min((currentPoints / tierInfo.pointsNeeded) * 100, 100);
+    
+    return { pointsToNext: Math.max(pointsToNext, 0), progress };
+  };
+
   const tierInfo = getTierInfo(userData?.membershipTier);
+  const tierProgress = getTierProgress(userData?.membershipTier, loyaltyPoints);
 
   return (
     <div className="rewards-page">
@@ -237,13 +249,13 @@ function Rewards() {
                 {tierInfo.nextTier && (
                   <div className="tier-progress">
                     <div className="tier-next">
-                      {tierInfo.pointsNeeded - loyaltyPoints} points to {tierInfo.nextTier}
+                      {tierProgress.pointsToNext} points to {tierInfo.nextTier}
                     </div>
                     <div className="progress-bar">
                       <div 
                         className="progress-fill" 
                         style={{ 
-                          width: `${Math.min((loyaltyPoints / tierInfo.pointsNeeded) * 100, 100)}%`,
+                          width: `${tierProgress.progress}%`,
                           backgroundColor: tierInfo.color 
                         }}
                       ></div>
@@ -427,6 +439,28 @@ function Rewards() {
               </div>
               <h4>Share Progress</h4>
               <p>Earn 25 points for sharing achievements</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Membership Tiers Explanation */}
+        <section className="tier-explanation">
+          <h2>Membership Tiers</h2>
+          <div className="tier-cards">
+            <div className="tier-card">
+              <div className="tier-badge bronze">Bronze</div>
+              <p>Starting tier • 0-499 points</p>
+              <span>5% discount on products</span>
+            </div>
+            <div className="tier-card">
+              <div className="tier-badge silver">Silver</div>
+              <p>Growing tier • 500-999 points</p>
+              <span>10% discount + priority support</span>
+            </div>
+            <div className="tier-card">
+              <div className="tier-badge gold">Gold</div>
+              <p>Premium tier • 1000+ points</p>
+              <span>15% discount + exclusive products + personal consultant</span>
             </div>
           </div>
         </section>

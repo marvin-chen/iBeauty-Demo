@@ -206,7 +206,68 @@
 
 .stat-label {
   font-size: 0.9rem;
-  color: #CCCCCC;
+  color: #666666;
+  font-weight: 500;
+}
+
+/* Tier Explanation Section */
+.tier-explanation {
+  margin-bottom: 60px;
+}
+
+.tier-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.tier-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.tier-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+}
+
+.tier-badge.bronze {
+  background-color: #CD7F32;
+}
+
+.tier-badge.silver {
+  background-color: #C0C0C0;
+}
+
+.tier-badge.gold {
+  background-color: #D4AF37;
+}
+
+.tier-card p {
+  margin: 8px 0;
+  color: #333333;
+  font-weight: 500;
+}
+
+.tier-card span {
+  color: #666666;
+  font-size: 0.9rem;
 }
 
 /* Goals Section */
